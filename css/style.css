@@ -474,13 +474,15 @@ section {
     color: var(--secondary-color);
 }
 
+/* GRID más chico */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
+/* CARD más compacta */
 .product-card {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
@@ -490,14 +492,15 @@ section {
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
     border-color: var(--secondary-color);
 }
 
+/* --- IMÁGENES (AHORA SÍ CON BACKGROUND CORRECTO) --- */
 
 .product-image {
-    height: 250px;
+    height: 400px !important;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url('../images/carne.jpg');
     background-size: cover;
@@ -507,7 +510,6 @@ section {
 }
 
 .product-image.lomo {
-    height: 500px;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
                 url('../images/lomo.jpg');
     background-size: cover;
@@ -515,45 +517,60 @@ section {
     transition: transform 0.4s ease;
     overflow: hidden;
 }
+
 .product-image.bife_ancho {
-    height: 500px;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
                 url('../images/bife_ancho.jpg');
     background-size: cover;
     background-position: center;
     transition: transform 0.4s ease;
     overflow: hidden;
-  
 }
+
 .product-image.bife_angosto {
-    height: 500px;
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
                 url('../images/bife_angosto.jpg');
     background-size: cover;
     background-position: center;
     transition: transform 0.4s ease;
     overflow: hidden;
-   
 }
 
+/* HOVER */
 .product-card:hover .product-image {
     transform: scale(1.1);
 }
 
+/* INFO */
 .product-info {
-    padding: 2rem;
+    padding: 1.4rem;
 }
 
 .product-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
     color: var(--secondary-color);
 }
 
 .product-info p {
     color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
+    line-height: 1.5;
+    font-size: 0.95rem;
 }
+
+
+/* Ajuste responsivo opcional */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .product-image {
+        height: 140px;
+    }
+}
+
 
 /* === CTA SECTION === */
 .cta-section {
