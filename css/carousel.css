@@ -1,0 +1,247 @@
+/* ============================
+   SLIDESHOW MEJORADO CON ANIMACIONES VARIADAS
+   ============================ */
+
+/* Transición general más suave */
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.carousel-fade .carousel-item.active {
+    opacity: 1;
+}
+
+.carousel-inner {
+    overflow: visible;
+}
+
+/* ======================================
+   CONTENEDOR BASE
+   ====================================== */
+.slide-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 60px 0;
+    min-height: 500px;
+}
+
+/* ======================================
+   SLIDE 1 - Layout Normal (Texto Left, Imagen Right)
+   Animación: Fade + Slide from Left/Right
+   ====================================== */
+
+/* Texto desde la IZQUIERDA */
+.carousel-item:nth-child(1) .slide-text {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(-80px);
+}
+
+.carousel-item:nth-child(1).active .slide-text {
+    animation: slideFromLeft 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slideFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Imagen desde la DERECHA */
+.carousel-item:nth-child(1) .slide-img {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(80px);
+}
+
+.carousel-item:nth-child(1).active .slide-img {
+    animation: slideFromRight 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideFromRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ======================================
+   SLIDE 2 - Layout Invertido (Imagen Left, Texto Right)
+   Animación: Zoom In + Fade
+   ====================================== */
+
+/* Invertir el orden con flexbox */
+.carousel-item:nth-child(2) .slide-content {
+    flex-direction: row-reverse;
+}
+
+/* Imagen con ZOOM IN */
+.carousel-item:nth-child(2) .slide-img {
+    flex: 1;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.carousel-item:nth-child(2).active .slide-img {
+    animation: zoomInFade 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes zoomInFade {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Texto desde ABAJO */
+.carousel-item:nth-child(2) .slide-text {
+    flex: 1;
+    opacity: 0;
+    transform: translateY(60px);
+}
+
+.carousel-item:nth-child(2).active .slide-text {
+    animation: slideFromBottom 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: 0.6s;
+}
+
+@keyframes slideFromBottom {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======================================
+   SLIDE 3 - Layout Normal otra vez
+   Animación: Rotate + Fade
+   ====================================== */
+
+/* Texto con ROTACIÓN ligera */
+.carousel-item:nth-child(3) .slide-text {
+    flex: 1;
+    opacity: 0;
+    transform: rotate(-5deg) translateY(40px);
+}
+
+.carousel-item:nth-child(3).active .slide-text {
+    animation: rotateInText 1.3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes rotateInText {
+    to {
+        opacity: 1;
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+/* Imagen con SLIDE desde ARRIBA */
+.carousel-item:nth-child(3) .slide-img {
+    flex: 1;
+    opacity: 0;
+    transform: translateY(-60px);
+}
+
+.carousel-item:nth-child(3).active .slide-img {
+    animation: slideFromTop 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideFromTop {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======================================
+   ESTILOS DE TEXTO Y BOTONES
+   ====================================== */
+
+.slide-text h2 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 15px;
+}
+
+.slide-text p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 12px;
+    line-height: 1.8;
+}
+
+.btn-slide {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: 2px solid #8B0000;
+    color: #8B0000;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-slide:hover {
+    background: #8B0000;
+    color: white;
+}
+
+/* ======================================
+   IMAGEN CON EFECTO CINEMATIC
+   ====================================== */
+
+.slide-img img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    transition: transform 6s ease;
+    transform: scale(1);
+}
+
+.carousel-item.active .slide-img img {
+    transform: scale(1.05);
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
+
+@media (max-width: 768px) {
+    .slide-content {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    /* Resetear todas las animaciones en mobile para que sean simples */
+    .carousel-item .slide-text,
+    .carousel-item .slide-img {
+        transform: none !important;
+    }
+
+    .carousel-item.active .slide-text {
+        animation: simpleFadeIn 1s ease forwards !important;
+    }
+
+    .carousel-item.active .slide-img {
+        animation: simpleFadeIn 1.2s ease forwards !important;
+    }
+
+    @keyframes simpleFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .slide-text h2 {
+        font-size: 2rem;
+    }
+}
