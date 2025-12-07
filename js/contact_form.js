@@ -1,6 +1,5 @@
 /**
- * PRIME CUTS - CONTACT FORM HANDLER
- * Form validation and submission
+ *Validación y envío del formulario de contacto
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -18,28 +17,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===== FORM SUBMISSION HANDLER =====
+// ===== MANEJADOR DE ENVÍO DEL FORMULARIO =====
 async function handleFormSubmit(e) {
     e.preventDefault();
     
     const form = e.target;
     const submitButton = form.querySelector('.submit-button');
     
-    // Validate all fields
+    // Validar todos los campos
     if (!validateForm(form)) {
         showNotification('Por favor, completa todos los campos correctamente.', 'error');
         return;
     }
     
-    // Disable submit button and show loading state
+    // Deshabilitar el botón de envío y mostrar estado de carga
     submitButton.disabled = true;
     submitButton.textContent = 'Enviando...';
     
-    // Get form data
+    // Obtener datos del formulario
     const formData = new FormData(form);
     
     try {
-        // Send data to PHP handler
+        // Enviar datos al manejador PHP
         const response = await fetch('../php/enviar-contacto.php', {
             method: 'POST',
             body: formData
@@ -51,7 +50,7 @@ async function handleFormSubmit(e) {
             showNotification('¡Mensaje enviado con éxito! Nos contactaremos pronto.', 'success');
             form.reset();
             
-            // Reset AOS animations on form fields
+            // Reiniciar animaciones AOS en los campos del formulario
             form.querySelectorAll('[data-aos]').forEach(el => {
                 el.classList.remove('aos-animate');
             });
@@ -63,13 +62,13 @@ async function handleFormSubmit(e) {
         console.error('Error:', error);
         showNotification('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.', 'error');
     } finally {
-        // Re-enable submit button
+        // Rehabilitar el botón de envío
         submitButton.disabled = false;
         submitButton.textContent = 'Enviar Mensaje';
     }
 }
 
-// ===== FORM VALIDATION =====
+// ===== VALIDACIÓN DEL FORMULARIO =====
 function validateForm(form) {
     let isValid = true;
     const inputs = form.querySelectorAll('input[required], textarea[required]');
@@ -88,34 +87,34 @@ function validateField(field) {
     const fieldName = field.name;
     let errorMessage = '';
     
-    // Clear previous error
+    // Limpiar error previo
     clearError(field);
     
-    // Check if required field is empty
+    // Verificar si el campo requerido está vacío
     if (field.hasAttribute('required') && !value) {
         errorMessage = 'Este campo es requerido.';
     }
-    // Email validation
+    // Validación de email
     else if (fieldName === 'email' && value) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
             errorMessage = 'Por favor, ingresa un email válido.';
         }
     }
-    // Phone validation (optional)
+    // Validación de teléfono (opcional)
     else if (fieldName === 'telefono' && value) {
         const phoneRegex = /^[\d\s\+\-\(\)]+$/;
         if (!phoneRegex.test(value)) {
             errorMessage = 'Por favor, ingresa un teléfono válido.';
         }
     }
-    // Name validation
+    // Validación de nombre
     else if (fieldName === 'nombre' && value) {
         if (value.length < 2) {
             errorMessage = 'El nombre debe tener al menos 2 caracteres.';
         }
     }
-    // Message validation
+    // Validación de mensaje
     else if (fieldName === 'mensaje' && value) {
         if (value.length < 10) {
             errorMessage = 'El mensaje debe tener al menos 10 caracteres.';
@@ -130,14 +129,14 @@ function validateField(field) {
     return true;
 }
 
-// ===== ERROR DISPLAY =====
+// ===== MOSTRAR ERROR =====
 function showError(field, message) {
     const formGroup = field.closest('.form-group');
     
-    // Add error class to field
+    // Agregar clase de error al campo
     field.classList.add('error');
     
-    // Create or update error message
+    // Crear o actualizar mensaje de error
     let errorElement = formGroup.querySelector('.error-message');
     if (!errorElement) {
         errorElement = document.createElement('span');
@@ -150,25 +149,25 @@ function showError(field, message) {
 function clearError(field) {
     const formGroup = field.closest('.form-group');
     
-    // Remove error class
+    // Eliminar clase de error
     field.classList.remove('error');
     
-    // Remove error message
+    // Eliminar mensaje de error
     const errorElement = formGroup.querySelector('.error-message');
     if (errorElement) {
         errorElement.remove();
     }
 }
 
-// ===== NOTIFICATION SYSTEM =====
+// ===== SISTEMA DE NOTIFICACIONES =====
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
+    // Eliminar notificaciones existentes
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
         existingNotification.remove();
     }
     
-    // Create notification element
+    // Crear elemento de notificación
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -179,24 +178,24 @@ function showNotification(message, type = 'info') {
         <button class="notification-close" onclick="this.parentElement.remove()">×</button>
     `;
     
-    // Add to page
+    // Agregar a la página
     document.body.appendChild(notification);
     
-    // Trigger animation
+    // Activar animación
     setTimeout(() => notification.classList.add('show'), 10);
     
-    // Auto-remove after 5 seconds
+    // Eliminar automáticamente después de 5 segundos
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 300);
     }, 5000);
 }
 
-// ===== INPUT FORMATTING =====
+// ===== FORMATEO DE ENTRADA =====
 function formatPhoneInput(input) {
     let value = input.value.replace(/\D/g, '');
     
-    // Format as: (XXX) XXX-XXXX
+    // Formatear como: (XXX) XXX-XXXX
     if (value.length > 0) {
         if (value.length <= 3) {
             value = `(${value}`;
@@ -210,7 +209,7 @@ function formatPhoneInput(input) {
     input.value = value;
 }
 
-// Apply phone formatting if phone field exists
+// Aplicar formateo de teléfono si el campo de teléfono existe
 const phoneInput = document.querySelector('input[name="telefono"]');
 if (phoneInput) {
     phoneInput.addEventListener('input', function() {

@@ -1,9 +1,8 @@
 /**
- * PRIME CUTS - MAIN JAVASCRIPT
- * Main functionality for the website
+ * Funcionalidad principal para el sitio web
  */
 
-// Initialize AOS (Animate On Scroll)
+// Inicializar AOS (Animate On Scroll)
 document.addEventListener('DOMContentLoaded', function() {
     AOS.init({
         duration: 1000,
@@ -13,16 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ===== NAVBAR FUNCTIONALITY =====
+// ===== FUNCIONALIDAD DEL NAVBAR =====
 
-// Navbar scroll effect
+// Efecto de desplazamiento del navbar
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    // Add 'scrolled' class when scrolling down
+    // Agregar clase 'scrolled' al desplazarse hacia abajo
     if (currentScroll > 100) {
         navbar.classList.add('scrolled');
     } else {
@@ -41,7 +40,7 @@ if (menuToggle && navLinks) {
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
         
-        // Prevent body scroll when menu is open
+        // Prevenir el desplazamiento del body cuando el menú está abierto
         if (navLinks.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -49,7 +48,7 @@ if (menuToggle && navLinks) {
         }
     });
 
-    // Close menu when clicking on a link
+    // Cerrar menú al hacer clic en un enlace
     const navLinksItems = navLinks.querySelectorAll('a');
     navLinksItems.forEach(link => {
         link.addEventListener('click', () => {
@@ -59,7 +58,7 @@ if (menuToggle && navLinks) {
         });
     });
 
-    // Close menu when clicking outside
+    // Cerrar menú al hacer clic fuera
     document.addEventListener('click', (e) => {
         if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
             navLinks.classList.remove('active');
@@ -90,7 +89,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== ACTIVE NAV LINK HIGHLIGHTING =====
+// ===== RESALTADO DEL ENLACE ACTIVO EN EL NAV =====
 const sections = document.querySelectorAll('section[id]');
 
 function setActiveNavLink() {
@@ -127,14 +126,14 @@ if ('IntersectionObserver' in window) {
         });
     });
 
-    // Observe all images with data-src attribute
+    // Observar todas las imágenes con el atributo data-src
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => imageObserver.observe(img));
 }
 
-// ===== PERFORMANCE OPTIMIZATION =====
+// ===== OPTIMIZACIÓN DE RENDIMIENTO =====
 
-// Debounce function for scroll events
+// Función debounce para eventos de desplazamiento
 function debounce(func, wait = 10, immediate = true) {
     let timeout;
     return function() {
@@ -151,20 +150,20 @@ function debounce(func, wait = 10, immediate = true) {
     };
 }
 
-// Apply debounce to scroll events
+// Aplicar debounce a eventos de desplazamiento
 window.addEventListener('scroll', debounce(() => {
-    // Scroll-related optimizations
+    // Optimización relacionada con el desplazamiento
     setActiveNavLink();
 }, 10));
 
-// ===== PAGE LOAD ANIMATION =====
+// ===== ANIMACIÓN DE CARGA DE PÁGINA =====
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// ===== UTILITY FUNCTIONS =====
+// ===== FUNCIONES UTILITARIAS =====
 
-// Check if element is in viewport
+// Verificar si un elemento está en el viewport
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -174,7 +173,3 @@ function isInViewport(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
-
-// Console message
-console.log('%cPRIME CUTS', 'color: #D4AF37; font-size: 24px; font-weight: bold;');
-console.log('%cExcelencia en cada corte', 'color: #8B0000; font-size: 14px;');
