@@ -15,12 +15,17 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 32px;
     z-index: 999;
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
+}
+
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
 }
 
 .whatsapp-float:hover {
@@ -73,7 +78,7 @@
 /* ===== BOTÓN VOLVER ARRIBA ===== */
 .back-to-top {
     position: fixed;
-    bottom: 100px;
+    bottom: 120px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -167,12 +172,20 @@ body.dark-mode nav {
 
 /* Overlay del hero en modo oscuro con color La Paz */
 body.dark-mode .hero {
-    background: linear-gradient(rgba(139, 0, 0, 0.7), rgba(26, 26, 26, 0.9)), 
-                url('../images/carne4.jpg');
+    background: linear-gradient(rgba(20, 0, 0, 0.85), rgba(10, 10, 10, 0.95)), url(../images/carne4.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
 }
 
 body.dark-mode .parallax-overlay {
-    background: linear-gradient(rgba(139, 0, 0, 0.6), rgba(26, 26, 26, 0.8));
+    background: linear-gradient(rgba(20, 0, 0, 0.75), rgba(10, 10, 10, 0.9));
 }
 
 body.dark-mode .about,
@@ -352,9 +365,9 @@ body.dark-mode .contact-icon {
 
 /* ===== ANIMACIONES HOVER MEJORADAS EN CARDS ===== */
 .product-card {
-    perspective: 1000px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .product-card::before {
@@ -429,37 +442,17 @@ body.dark-mode .contact-icon {
     opacity: 1;
 }
 
-/* ===== PARALLAX EFFECT ===== */
-.parallax-section {
-    background-attachment: fixed !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    position: relative;
-}
-
-.parallax-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
-    z-index: 1;
-}
-
-.parallax-content {
-    position: relative;
-    z-index: 2;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .whatsapp-float,
     .back-to-top {
         width: 50px;
         height: 50px;
-        font-size: 24px;
+    }
+    
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
     }
     
     .whatsapp-float {
@@ -470,6 +463,7 @@ body.dark-mode .contact-icon {
     .back-to-top {
         bottom: 80px;
         right: 20px;
+        font-size: 24px;
     }
     
     .dark-mode-toggle {
@@ -491,18 +485,6 @@ body.dark-mode .contact-icon {
         width: 40px;
         height: 40px;
         font-size: 20px;
-    }
-    
-    .parallax-section {
-        background-attachment: scroll !important;
-    }
-    
-    /* Asegurar que el hero en móvil también tenga el overlay correcto */
-    body.dark-mode .hero {
-        background: linear-gradient(rgba(139, 0, 0, 0.7), rgba(26, 26, 26, 0.9)), 
-                    url('../images/carne4.jpg');
-        background-size: cover;
-        background-position: center;
     }
 }
 
