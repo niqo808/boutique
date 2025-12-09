@@ -182,6 +182,21 @@ ul {
         text-align: center;
         gap: 20px;
     }
+    #sectionCarousel .carousel-control-prev {
+        left: -10px;
+    }
+    #sectionCarousel .carousel-control-next {
+        right: -10px;
+    }
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .product-image {
+        height: 140px;
+    }
+
 }
 
 /* Animaciones */
@@ -198,15 +213,6 @@ ul {
 /* Ocultar botones del carousel */
 
 
-/* para pantallas chicas los volvemos a centrar un poco */
-@media (max-width: 768px) {
-    #sectionCarousel .carousel-control-prev {
-        left: -10px;
-    }
-    #sectionCarousel .carousel-control-next {
-        right: -10px;
-    }
-}
 
   
 /* === NAVIGATION === */
@@ -246,6 +252,13 @@ nav.scrolled {
     
 }
 
+.gorro-navidad {
+    position: absolute;
+    width: 55px;
+    top: -13px;
+    right: 1200px;     
+    pointer-events: none;
+}
 
 .brand-icon .logo-img:hover {
     transform: scale(1.05);
@@ -557,19 +570,6 @@ section {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
     font-size: 0.95rem;
-}
-
-
-/* Ajuste responsivo opcional */
-@media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-    }
-
-    .product-image {
-        height: 140px;
-    }
 }
 
 
