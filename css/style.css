@@ -220,12 +220,12 @@ nav {
     padding: 1.5rem 5%;
     z-index: 1000;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 nav.scrolled {
     padding: 1rem 5%;
     height: 75px;
-    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.267);
 }
 
 .nav-container {
