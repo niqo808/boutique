@@ -50,9 +50,17 @@
     background: linear-gradient(to right, var(--white), transparent);
 }
 
+body.dark-mode .clients-slider-wrapper::before {
+    background: linear-gradient(to right, var(--dark), transparent);
+}
+
 .clients-slider-wrapper::after {
     right: 0;
     background: linear-gradient(to left, var(--white), transparent);
+}
+
+body.dark-mode .clients-slider-wrapper::after {
+    background: linear-gradient(to left, var(--dark), transparent);
 }
 
 .clients-slider {
@@ -204,24 +212,3 @@
         padding: 1.5rem;
     }
 }
-
-/* ======================================
-   VERSIÓN ALTERNATIVA: Grid estático
-   (Si preferís que no se mueva automáticamente)
-   ====================================== */
-
-/* Descomentá esto y comentá el .clients-track animation si preferís grid estático:
-
-.clients-track {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    animation: none;
-    width: 100%;
-}
-
-.client-logo {
-    width: 100%;
-}
-
-*/
