@@ -27,9 +27,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Incluimos las clases necesarias (carpeta src subida al hosting)
-require __DIR__ . '/../phpmailer/src/PHPMailer.php';
-require __DIR__ . '/../phpmailer/src/SMTP.php';
-require __DIR__ . '/../phpmailer/src/Exception.php';
+require __DIR__ . '/phpmailer/src/PHPMailer.php';
+require __DIR__ . '/phpmailer/src/SMTP.php';
+require __DIR__ . '/phpmailer/src/Exception.php';
 
 // ===== CONFIG =====
 define('CONTACT_EMAIL', 'ferreira.nicolas.et21.21@gmail.com'); // Cambiar al email real
