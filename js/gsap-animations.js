@@ -5,9 +5,7 @@
 gsap.registerPlugin(
     ScrollTrigger,
     ScrollToPlugin,
-    SplitText,
-    ScrollSmoother,
-    TextPlugin
+    ScrollSmoother
 );
 
 // =======================
@@ -282,4 +280,7 @@ gsap.utils.toArray(".testimonial-card").forEach((card, i) => {
         }
     });
 });
+
+
+
 
