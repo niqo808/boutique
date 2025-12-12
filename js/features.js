@@ -229,48 +229,6 @@ function initProductCardEffects() {
     });
 }
 
-// ===== ANIMACIÓN DE ENTRADA PARA ELEMENTOS =====
-function animateOnScroll() {
-    const elements = document.querySelectorAll('[data-animate]');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const animationType = entry.target.dataset.animate;
-                entry.target.style.animation = `${animationType} 0.8s ease forwards`;
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    elements.forEach(el => observer.observe(el));
-}
-
-// ===== SMOOTH REVEAL PARA SECCIONES =====
-function smoothReveal() {
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-    });
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => observer.observe(section));
-}
-
-// Inicializar smooth reveal
-smoothReveal();
-
 // ===== PERFORMANCE MONITORING =====
 window.addEventListener('load', () => {
     console.log('✅ Todas las funciones cargadas correctamente');

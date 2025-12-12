@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Escribinos. Estamos aquí para atenderte.">
     <title>Contacto - La Paz</title>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/logo.png">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Estilos -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/contacto.css">
     <link rel="stylesheet" href="../css/features.css">
-    
 </head>
 <body>
     <!-- Navigation -->
@@ -30,6 +32,7 @@
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="sobre-nosotros.html">Nosotros</a></li>
                 <li><a href="productos.html">Productos</a></li>
+                <li><a href="sucursales.html">Sucursales</a></li>
                 <li><a href="contacto.html" class="active">Contacto</a></li>
                 <li><a href="sistema.html">Acceso al Sistema</a></li>
             </ul>
@@ -42,7 +45,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header" data-aos="fade-down">
+    <section class="page-header fade-in">
         <div>
             <h1>Contactanos</h1>
             <p>Estamos acá para atenderte</p>
@@ -54,7 +57,7 @@
         <div class="contact-container">
             <!-- Contact Info -->
             <div class="contact-info">
-                <div data-aos="fade-right">
+                <div class="fade-in">
                     <h2>Hablemos</h2>
                     <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8;">
                         ¿Tenés alguna pregunta o querés conocer más sobre nuestros productos premium? 
@@ -63,7 +66,7 @@
                     </p>
                 </div>
                 
-                <div class="contact-item" data-aos="fade-right" data-aos-delay="100">
+                <div class="contact-item fade-in">
                     <div class="contact-icon">📍</div>
                     <div class="contact-item-content">
                         <h3>Dirección</h3>
@@ -71,7 +74,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-item" data-aos="fade-right" data-aos-delay="200">
+                <div class="contact-item fade-in">
                     <div class="contact-icon">📞</div>
                     <div class="contact-item-content">
                         <h3>Teléfono</h3>
@@ -79,7 +82,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-item" data-aos="fade-right" data-aos-delay="300">
+                <div class="contact-item fade-in">
                     <div class="contact-icon">✉️</div>
                     <div class="contact-item-content">
                         <h3>Email</h3>
@@ -89,7 +92,7 @@
             </div>
             
             <!-- Contact Form -->
-            <form id="contactForm" class="contact-form" data-aos="fade-left">
+            <form method="post" action="../php/enviar_contacto.php" id="contactForm" class="contact-form fade-in">
                 <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-color);">
                     Mandanos un Mensaje
                 </h3>
@@ -147,6 +150,7 @@
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="sobre-nosotros.html">Nosotros</a></li>
                     <li><a href="productos.html">Productos</a></li>
+                    <li><a href="sucursales.html">Sucursales</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="sistema.html">Acceso al Sistema</a></li>
                 </ul>
@@ -162,9 +166,9 @@
             <div class="footer-section">
                 <h4>Seguínos</h4>
                 <div class="social-links">
-                    <a href="#" title="Facebook" aria-label="Facebook">f</a>
-                    <a href="#" title="Instagram" aria-label="Instagram">📷</a>
-                    <a href="#" title="WhatsApp" aria-label="WhatsApp">💬</a>
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="WhatsApp">💬</a>
                 </div>
             </div>
         </div>
@@ -173,11 +177,48 @@
             <p>&copy; 2025 La Paz. Todos los derechos reservados.</p>
         </div>
     </footer>
-    <!-- Bootstrap JS -->
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    
     <script src="../js/main.js"></script>
     <script src="../js/contact_form.js"></script>
     <script src="../js/features.js"></script>
+    
+    <!-- Animaciones GSAP para contacto -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Fade in elements
+        gsap.utils.toArray('.fade-in').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Contact items stagger
+        gsap.from('.contact-item', {
+            scrollTrigger: {
+                trigger: '.contact-info',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: -30,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power2.out'
+        });
+    </script>
 </body>
 </html>

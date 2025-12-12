@@ -39,21 +39,29 @@ async function handleFormSubmit(e) {
     
     try {
         // Enviar datos al manejador PHP
-        const response = await fetch('../php/enviar-contacto.php', {
+        const response = await fetch('../php/enviar_contacto.php', {
             method: 'POST',
             body: formData
         });
         
-        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+        
+        const text = await response.text();
+        
+        // Intentar parsear como JSON
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch (e) {
+            console.error('Response:', text);
+            throw new Error('El servidor no respondió correctamente. Por favor, intenta más tarde.');
+        }
         
         if (result.success) {
             showNotification('¡Mensaje enviado con éxito! Nos contactaremos pronto.', 'success');
             form.reset();
-            
-            // Reiniciar animaciones AOS en los campos del formulario
-            form.querySelectorAll('[data-aos]').forEach(el => {
-                el.classList.remove('aos-animate');
-            });
         } else {
             throw new Error(result.message || 'Error al enviar el mensaje');
         }
