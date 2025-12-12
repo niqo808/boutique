@@ -2,15 +2,6 @@
  * Funcionalidad principal para el sitio web
  */
 
-// Inicializar AOS (Animate On Scroll)
-document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-        duration: 1000,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100
-    });
-});
 
 // ===== FUNCIONALIDAD DEL NAVBAR =====
 
@@ -68,26 +59,6 @@ if (menuToggle && navLinks) {
     });
 }
 
-// ===== SMOOTH SCROLLING =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const target = document.querySelector(targetId);
-        if (target) {
-            const navbarHeight = navbar.offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
 
 // ===== RESALTADO DEL ENLACE ACTIVO EN EL NAV =====
 const sections = document.querySelectorAll('section[id]');

@@ -354,27 +354,6 @@ nav.scrolled {
 }
 
 /* === BUTTONS === */
-.cta-button {
-    display: inline-block;
-    padding: 1.2rem 3rem;
-    background: var(--primary-color);
-    color: var(--white);
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    border: 2px solid var(--primary-color);
-    margin-top: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.cta-button:hover {
-    background: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: var(--white);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px var(--secondary-color);
-}
 
 .btn-secondary.about {
     display: inline-block;
@@ -579,18 +558,61 @@ section {
     color: var(--white);
     text-align: center;
     padding: 5rem 5%;
+    position: relative;
+    z-index: 1;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .cta-content h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: var(--white);
+    font-weight: 700;
 }
 
 .cta-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
 }
+
+/* ===== FIX PARA BOTONES CTA ===== */
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--secondary-color);
+    color: var(--dark);
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--secondary-color);
+    margin-top: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    z-index: 3;
+}
+
+.cta-button:hover {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
 
 /* === FOOTER === */
 footer {
@@ -720,3 +742,16 @@ footer {
     }
 }
 
+      /* Make sure content doesn't hide under navbar (adjust height if your navbar is taller) */
+      #smooth-content {
+        padding-top: 80px; /* match navbar height (adjust if needed) */
+        min-height: 100vh;
+      }
+
+      /* Improve smooth wrapper behaviour */
+      #smooth-wrapper, #smooth-content {
+        overflow: visible;
+      }
+
+      /* If you use anchors, ensure :target works */
+      :target { scroll-margin-top: 100px; }

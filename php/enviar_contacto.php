@@ -1,6 +1,6 @@
 <?php
 /**
- * PRIME CUTS - CONTACT FORM HANDLER
+ * Boutique La Paz - CONTACT FORM HANDLER
  * Processes contact form submissions and sends emails
  */
 
@@ -12,8 +12,8 @@ header('Content-Type: application/json');
 // ini_set('display_errors', 1);
 
 // ===== CONFIGURATION =====
-define('CONTACT_EMAIL', 'info@primecuts.com'); // Change to your email
-define('SUBJECT_PREFIX', '[Prime Cuts] ');
+define('CONTACT_EMAIL', 'info@boutiquelapaz.com'); // Change to your email
+define('SUBJECT_PREFIX', '[Boutique La Paz] ');
 define('MAX_FILE_SIZE', 5242880); // 5MB in bytes
 
 // ===== SECURITY =====
