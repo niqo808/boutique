@@ -27,9 +27,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Incluimos las clases necesarias (carpeta src subida al hosting)
-require __DIR__ . '/phpmailer/src/PHPMailer.php';
-require __DIR__ . '/phpmailer/src/SMTP.php';
-require __DIR__ . '/phpmailer/src/Exception.php';
+require __DIR__ . '/../phpmailer/src/PHPMailer.php';
+require __DIR__ . '/../phpmailer/src/SMTP.php';
+require __DIR__ . '/../phpmailer/src/Exception.php';
 
 // ===== CONFIG =====
 define('CONTACT_EMAIL', 'ferreira.nicolas.et21.21@gmail.com'); // Cambiar al email real
@@ -120,12 +120,13 @@ $emailBodyPlain = "Nombre: $nombre\nEmail: $email\n"
 $mail = new PHPMailer(true);
 
 try {
-    // Configuración del servidor SMTP
+    // IMPORTANTE: Cambiar estos valores por variables de entorno o archivo .env en producción
+    // NEVER hardcode credentials in production code!
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'ferreira.nicolas.et21.21@gmail.com';
-    $mail->Password   = 'oqqm qugt lkkv pleh';
+    $mail->Username   = 'ferreira.nicolas.et21.21@gmail.com';  // TODO: Usar variable de entorno
+    $mail->Password   = 'oqqm qugt lkkv pleh';                 // TODO: Usar variable de entorno
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
     $mail->CharSet    = 'UTF-8';
