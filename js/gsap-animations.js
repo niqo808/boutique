@@ -2,22 +2,7 @@
 // GSAP SETUP
 // =======================
 
-gsap.registerPlugin(
-    ScrollTrigger,
-    ScrollToPlugin,
-    ScrollSmoother
-);
-
-// =======================
-// SCROLLSMOOTHER
-// =======================
-const smoother = ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.3,         // ultra smooth
-    effects: true,
-    normalizeScroll: true,
-});
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // =======================
 // ANIMACIONES GLOBALES
@@ -25,14 +10,18 @@ const smoother = ScrollSmoother.create({
 
 // Fade suave general (para cualquier elemento con clase .fade-in)
 gsap.utils.toArray(".fade-in").forEach(el => {
+    // Asegurar que el elemento sea visible primero
+    gsap.set(el, { opacity: 1 });
+    
     gsap.from(el, {
         scrollTrigger: {
             trigger: el,
             start: "top 85%",
+            toggleActions: "play none none reverse"
         },
         opacity: 0,
-        y: 40,
-        duration: 1.2,
+        y: 30,
+        duration: 0.8,
         ease: "power3.out"
     });
 });
@@ -65,14 +54,14 @@ gsap.from(".hero-description", {
 
 gsap.from(".cta-button", {
     y: 20,
-    opacity: 0,
+    opacity: 1,
     duration: 0.8,
     delay: 0.8,
     ease: "power2.out"
 });
 
 // =======================
-// CAROUSEL — efecto premiuM
+// CAROUSEL – efecto premium
 // =======================
 gsap.utils.toArray(".carousel-item").forEach(slide => {
 
@@ -107,7 +96,7 @@ gsap.utils.toArray(".carousel-item").forEach(slide => {
 });
 
 // =======================
-// PRODUCTOS — efecto stagger + reveal
+// PRODUCTOS – efecto stagger + reveal
 // =======================
 gsap.utils.toArray(".product-card").forEach((card, i) => {
     gsap.from(card, {
@@ -124,7 +113,7 @@ gsap.utils.toArray(".product-card").forEach((card, i) => {
 });
 
 // =======================
-// CLIENTES — logos flotando + reveal
+// CLIENTES – logos flotando + reveal
 // =======================
 
 // efecto float infinito (muy sutil)
@@ -152,7 +141,7 @@ gsap.utils.toArray(".client-logo").forEach((logo, i) => {
 });
 
 // =======================
-// TESTIMONIOS — alternando dirección
+// TESTIMONIOS – alternando dirección
 // =======================
 gsap.utils.toArray(".testimonial-card").forEach((card, i) => {
     gsap.from(card, {
@@ -168,18 +157,25 @@ gsap.utils.toArray(".testimonial-card").forEach((card, i) => {
 });
 
 // =======================
-// CTA SECTION — scale + fade
+// CTA SECTION – scale + fade (ARREGLADO)
 // =======================
-gsap.from(".cta-section", {
-    scrollTrigger: {
-        trigger: ".cta-section",
-        start: "top 85%",
-    },
-    scale: 0.95,
-    opacity: 0,
-    duration: 1.3,
-    ease: "power3.out"
-});
+const ctaSection = document.querySelector(".cta-section");
+if (ctaSection) {
+    // Asegurar visibilidad por defecto
+    gsap.set(ctaSection, { opacity: 1, scale: 1 });
+    
+    gsap.from(ctaSection, {
+        scrollTrigger: {
+            trigger: ctaSection,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+        },
+        scale: 0.95,
+        opacity: 0,
+        duration: 1.3,
+        ease: "power3.out"
+    });
+}
 
 // =======================
 // Smooth scroll para anchors
@@ -190,97 +186,14 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
         if (target) {
             e.preventDefault();
-            smoother.scrollTo(target, true, { offset: -70 });
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: target,
+                    offsetY: 70
+                },
+                ease: "power3.inOut"
+            });
         }
     });
 });
-
-// =======================
-// PARALLAX EFFECTS
-// =======================
-
-// Parallax imágenes globales (usar clase .parallax-img)
-gsap.utils.toArray(".parallax-img").forEach((img) => {
-    gsap.to(img, {
-        y: () => img.getAttribute("data-speed") || -50,
-        ease: "none",
-        scrollTrigger: {
-            trigger: img,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-        }
-    });
-});
-
-// Hero parallax background
-gsap.to(".hero", {
-    backgroundPositionY: "40%",
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5
-    }
-});
-
-// Carousel parallax images
-gsap.utils.toArray(".slide-img img").forEach((img) => {
-    gsap.to(img, {
-        y: -40,
-        ease: "none",
-        scrollTrigger: {
-            trigger: img,
-            start: "top 90%",
-            end: "bottom top",
-            scrub: 1
-        }
-    });
-});
-
-// Carousel parallax text
-gsap.utils.toArray(".slide-text").forEach((text) => {
-    gsap.to(text, {
-        y: 40,
-        ease: "none",
-        scrollTrigger: {
-            trigger: text,
-            start: "top 90%",
-            end: "bottom top",
-            scrub: 1.2
-        }
-    });
-});
-
-// Product images parallax
-gsap.utils.toArray(".product-image").forEach((card) => {
-    gsap.to(card, {
-        y: -20,
-        ease: "none",
-        scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1
-        }
-    });
-});
-
-// Testimonials parallax alternado
-gsap.utils.toArray(".testimonial-card").forEach((card, i) => {
-    gsap.to(card, {
-        y: i % 2 === 0 ? -25 : 25,
-        ease: "none",
-        scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.5,
-        }
-    });
-});
-
-
-
-
