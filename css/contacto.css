@@ -91,6 +91,16 @@
     flex-shrink: 0;
 }
 
+body.dark-mode .contact-item-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--light);
+}
+
+body.dark-mode .contact-info .p_info {
+    color: var(--light) !important;
+}
+
 .contact-item-content h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
@@ -129,6 +139,12 @@
 .form-group label {
     font-size: 1rem;
     color: var(--dark);
+    font-weight: 500;
+}
+
+body.dark-mode .form-group label {
+    font-size: 1rem;
+    color: var(--light);
     font-weight: 500;
 }
 
