@@ -250,3 +250,38 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ===== FUNCIÓN GLOBAL PARA LIGHTBOX (COMPATIBLE CON SUCURSALES) =====
+
+
+// Hacer que el lightbox sea accesible globalmente para otros módulos
+window.openLightboxImage = function(imageSrc, caption) {
+    const lightbox = document.querySelector('.lightbox');
+    
+    if (lightbox) {
+        const img = lightbox.querySelector('img');
+        const captionEl = lightbox.querySelector('.lightbox-caption');
+        
+        if (img) {
+            img.src = imageSrc;
+            img.alt = caption || '';
+        }
+        if (captionEl) {
+            captionEl.textContent = caption || '';
+        }
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        console.warn('Lightbox no disponible');
+    }
+};
+
+// Función para cerrar el lightbox (también global)
+window.closeLightboxImage = function() {
+    const lightbox = document.querySelector('.lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};

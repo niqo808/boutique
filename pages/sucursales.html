@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Visitá nuestras sucursales en Buenos Aires">
     <title>Sucursales - La Paz</title>
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/logo.png">
+    
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Estilos -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/features.css">
     <link rel="stylesheet" href="../css/sucursales.css">
 </head>
 <body>
+    <!-- NAVBAR -->
     <nav id="navbar">
         <div class="nav-container">
             <a href="../index.html" class="logo title">
@@ -24,8 +31,8 @@
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="sobre-nosotros.html">Nosotros</a></li>
                 <li><a href="productos.html">Productos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="sucursales.html" class="active">Sucursales</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="sistema.html">Acceso al Sistema</a></li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
@@ -36,36 +43,122 @@
         </div>
     </nav>
 
+    <!-- PAGE HEADER -->
     <section class="page-header fade-in">
         <div>
             <h1>Nuestras Sucursales</h1>
-            <p>Encontranos cerca tuyo en Buenos Aires</p>
+            <p>Te esperamos en cualquiera de nuestras 6 ubicaciones</p>
         </div>
     </section>
 
+    <!-- CONTROLS -->
+    <div class="controls-section">
+        <div class="controls-container">
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    🏪 Vista Grid
+                </button>
+                <button class="view-btn" data-view="mapa">
+                    🗺️ Ver Mapa
+                </button>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-zona="todas">
+                    Todas las Zonas
+                </button>
+                <button class="filter-btn" data-zona="norte">
+                    Zona Norte
+                </button>
+                <button class="filter-btn" data-zona="oeste">
+                    Zona Oeste
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
     <section class="sucursales-section">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <h2 class="section-title fade-in">Visitanos</h2>
-            <p class="section-subtitle fade-in">
-                6 ubicaciones estratégicas para servirte mejor
+        <!-- INFO BOX -->
+        <div class="info-box fade-in">
+            <h3>💎 Calidad Premium en Cada Ubicación</h3>
+            <p>
+                Todas nuestras sucursales mantienen los mismos estándares de excelencia. 
+                Contamos con cámaras frigoríficas de última generación, personal altamente 
+                capacitado y delivery con cadena de frío garantizada. Encontrá la sucursal 
+                más cercana y disfrutá de la mejor carne premium de Buenos Aires.
             </p>
         </div>
 
-        <div class="sucursales-grid">
-            <!-- Sucursal 1: VILLA ROSA -->
-            <div class="sucursal-card">
+        <!-- MAP CONTAINER -->
+        <div class="map-container" id="mapContainer">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105126.36103382853!2d-58.54394268593752!3d-34.603722800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses!2sar!4v1234567890123"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- GRID CONTAINER -->
+        <div class="sucursales-grid" id="sucursalesGrid">
+            
+            <!-- SUCURSAL 1: VILLA ROSA -->
+            <div class="sucursal-card" data-zona="norte">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">1</span>
-                    <h3 class="sucursal-nombre">VILLA ROSA</h3>
+                    <h3 class="sucursal-nombre">Villa Rosa</h3>
+                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>Esquina Moreno y Sarmiento<br>Villa Rosa, Buenos Aires</p>
+
+                <!-- Galería de Imágenes -->
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/carne4.jpg" alt="Sucursal Villa Rosa" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne6.jpg" alt="Interior sucursal" class="thumb-img">
+                        <img src="../images/carne7.jpg" alt="Productos" class="thumb-img">
+                        <img src="../images/contacto.jpg" alt="Local" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>Esquina Moreno y Sarmiento<br>Villa Rosa, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5678</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=Moreno+y+Sarmiento+Villa+Rosa+Buenos+Aires" 
                            target="_blank" 
@@ -81,27 +174,69 @@
                 </div>
             </div>
 
-            <!-- Sucursal 2: VILLA DE MAYO -->
-            <div class="sucursal-card">
+            <!-- SUCURSAL 2: VILLA DE MAYO -->
+            <div class="sucursal-card" data-zona="norte">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">2</span>
-                    <h3 class="sucursal-nombre">VILLA DE MAYO</h3>
+                    <h3 class="sucursal-nombre">Villa de Mayo</h3>
+                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>Eva Perón 4505<br>Villa de Mayo, Buenos Aires</p>
+
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/carne7.jpg" alt="Sucursal Villa de Mayo" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne4.jpg" alt="Interior" class="thumb-img">
+                        <img src="../images/carne6.jpg" alt="Productos" class="thumb-img">
+                        <img src="../images/contacto.jpg" alt="Exterior" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>Eva Perón 4505<br>Villa de Mayo, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5679</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=Eva+Peron+4505+Villa+de+Mayo+Buenos+Aires" 
                            target="_blank" 
                            class="btn-sucursal btn-direcciones">
                             🗺️ Cómo llegar
                         </a>
-                        <a href="https://wa.me/5491112345678" 
+                        <a href="https://wa.me/5491112345679" 
                            target="_blank" 
                            class="btn-sucursal btn-whatsapp">
                             💬 WhatsApp
@@ -110,27 +245,69 @@
                 </div>
             </div>
 
-            <!-- Sucursal 3: VILLA ROSA II -->
-            <div class="sucursal-card">
+            <!-- SUCURSAL 3: VILLA ROSA II -->
+            <div class="sucursal-card" data-zona="norte">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">3</span>
-                    <h3 class="sucursal-nombre">VILLA ROSA II</h3>
+                    <h3 class="sucursal-nombre">Villa Rosa II</h3>
+                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>Esquina Almirante Brown y Descalzi<br>Villa Rosa, Buenos Aires</p>
+
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/carne6.jpg" alt="Sucursal Villa Rosa II" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne7.jpg" alt="Vista 1" class="thumb-img">
+                        <img src="../images/carne4.jpg" alt="Vista 2" class="thumb-img">
+                        <img src="../images/contacto.jpg" alt="Vista 3" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>Esquina Almirante Brown y Descalzi<br>Villa Rosa, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 8:30 - 20:30<br>Sáb: 9:00 - 16:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5680</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=Almirante+Brown+y+Descalzi+Villa+Rosa+Buenos+Aires" 
                            target="_blank" 
                            class="btn-sucursal btn-direcciones">
                             🗺️ Cómo llegar
                         </a>
-                        <a href="https://wa.me/5491112345678" 
+                        <a href="https://wa.me/5491112345680" 
                            target="_blank" 
                            class="btn-sucursal btn-whatsapp">
                             💬 WhatsApp
@@ -139,27 +316,69 @@
                 </div>
             </div>
 
-            <!-- Sucursal 4: ADOLFO SOURDEAUX -->
-            <div class="sucursal-card">
+            <!-- SUCURSAL 4: ADOLFO SOURDEAUX -->
+            <div class="sucursal-card" data-zona="oeste">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">4</span>
-                    <h3 class="sucursal-nombre">ADOLFO SOURDEAUX</h3>
+                    <h3 class="sucursal-nombre">Adolfo Sourdeaux</h3>
+                    <p class="sucursal-zona">Zona Oeste • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>Derqui 1242<br>Adolfo Sourdeaux, Buenos Aires</p>
+
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/contacto.jpg" alt="Sucursal Adolfo Sourdeaux" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne4.jpg" alt="Interior" class="thumb-img">
+                        <img src="../images/carne6.jpg" alt="Mostrador" class="thumb-img">
+                        <img src="../images/carne7.jpg" alt="Productos" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>Derqui 1242<br>Adolfo Sourdeaux, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 14:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5681</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=Derqui+1242+Adolfo+Sourdeaux+Buenos+Aires" 
                            target="_blank" 
                            class="btn-sucursal btn-direcciones">
                             🗺️ Cómo llegar
                         </a>
-                        <a href="https://wa.me/5491112345678" 
+                        <a href="https://wa.me/5491112345681" 
                            target="_blank" 
                            class="btn-sucursal btn-whatsapp">
                             💬 WhatsApp
@@ -168,27 +387,69 @@
                 </div>
             </div>
 
-            <!-- Sucursal 5: MATHEU -->
-            <div class="sucursal-card">
+            <!-- SUCURSAL 5: MATHEU -->
+            <div class="sucursal-card" data-zona="norte">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">5</span>
-                    <h3 class="sucursal-nombre">MATHEU</h3>
+                    <h3 class="sucursal-nombre">Matheu</h3>
+                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>San Martín 262<br>Matheu, Buenos Aires</p>
+
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/carne4.jpg" alt="Sucursal Matheu" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne6.jpg" alt="Local" class="thumb-img">
+                        <img src="../images/carne7.jpg" alt="Interior" class="thumb-img">
+                        <img src="../images/contacto.jpg" alt="Fachada" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>San Martín 262<br>Matheu, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 8:00 - 20:00<br>Sáb: 8:00 - 15:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5682</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=San+Martin+262+Matheu+Buenos+Aires" 
                            target="_blank" 
                            class="btn-sucursal btn-direcciones">
                             🗺️ Cómo llegar
                         </a>
-                        <a href="https://wa.me/5491112345678" 
+                        <a href="https://wa.me/5491112345682" 
                            target="_blank" 
                            class="btn-sucursal btn-whatsapp">
                             💬 WhatsApp
@@ -197,27 +458,69 @@
                 </div>
             </div>
 
-            <!-- Sucursal 6: DON TORCUATO -->
-            <div class="sucursal-card">
+            <!-- SUCURSAL 6: DON TORCUATO -->
+            <div class="sucursal-card" data-zona="norte">
                 <div class="sucursal-header">
                     <span class="sucursal-numero">6</span>
-                    <h3 class="sucursal-nombre">DON TORCUATO</h3>
+                    <h3 class="sucursal-nombre">Don Torcuato</h3>
+                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
                 </div>
-                <div class="sucursal-body">
-                    <div class="sucursal-info">
-                        <div class="sucursal-icon">📍</div>
-                        <div class="sucursal-details">
-                            <h4>Dirección</h4>
-                            <p>Triunvirato 1596, esquina Chile<br>Don Torcuato, Buenos Aires</p>
+
+                <div class="sucursal-gallery">
+                    <div class="gallery-main">
+                        <img src="../images/carne7.jpg" alt="Sucursal Don Torcuato" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <span>📸 Ver más fotos</span>
                         </div>
                     </div>
+                    <div class="gallery-thumbs">
+                        <img src="../images/carne4.jpg" alt="Vista frontal" class="thumb-img">
+                        <img src="../images/contacto.jpg" alt="Interior" class="thumb-img">
+                        <img src="../images/carne6.jpg" alt="Productos" class="thumb-img">
+                    </div>
+                </div>
+
+                <div class="sucursal-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h4>Dirección</h4>
+                                <p>Triunvirato 1596, esquina Chile<br>Don Torcuato, Buenos Aires</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div class="info-content">
+                                <h4>Horarios</h4>
+                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
+                                <span class="horario-badge">🟢 Verificando...</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h4>Teléfono</h4>
+                                <p>+54 11 1234-5683</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="servicios-list">
+                        <span class="servicio-tag">🚚 Delivery</span>
+                        <span class="servicio-tag">❄️ Cadena Fría</span>
+                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
+                    </div>
+
                     <div class="sucursal-actions">
                         <a href="https://maps.google.com/?q=Triunvirato+1596+Don+Torcuato+Buenos+Aires" 
                            target="_blank" 
                            class="btn-sucursal btn-direcciones">
                             🗺️ Cómo llegar
                         </a>
-                        <a href="https://wa.me/5491112345678" 
+                        <a href="https://wa.me/5491112345683" 
                            target="_blank" 
                            class="btn-sucursal btn-whatsapp">
                             💬 WhatsApp
@@ -225,32 +528,37 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-section logo-container">
                 <img src="../images/logo.png" alt="Logo La Paz" class="logo">
                 <span class="logo-text">Excelencia en cada corte desde 1994</span>
             </div>
+            
             <div class="footer-section">
                 <h4>Enlaces Rápidos</h4>
                 <ul>
                     <li><a href="../index.html">Inicio</a></li>
                     <li><a href="sobre-nosotros.html">Nosotros</a></li>
                     <li><a href="productos.html">Productos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="sucursales.html">Sucursales</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="sistema.html">Acceso al Sistema</a></li>
                 </ul>
             </div>
+            
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <p>📍 Av. Principal 1234, Buenos Aires</p>
                 <p>📞 +54 11 1234-5678</p>
                 <p>✉️ info@boutiquelapaz.com</p>
             </div>
+            
             <div class="footer-section">
                 <h4>Seguínos</h4>
                 <div class="social-links">
@@ -260,11 +568,13 @@
                 </div>
             </div>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2025 La Paz. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- GSAP -->
@@ -273,6 +583,7 @@
     
     <script src="../js/main.js"></script>
     <script src="../js/features.js"></script>
+    <script src="../js/sucursales.js"></script>
     <script src="../js/gsap-sucursales.js"></script>
     
 </body>

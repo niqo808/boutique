@@ -1,204 +1,731 @@
+/* ============================
+   SUCURSALES - LA PAZ
+   ============================ */
+
+/* ===== PAGE HEADER ===== */
 .page-header {
-            height: 60vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../images/carne4.jpg);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            color: var(--light);
-            margin-top: 90px;
-        }
-        
-        .page-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-        }
-        
-        .page-header p {
-            font-size: 1.3rem;
-            color: var(--secondary-color);
-        }
-        
-        .sucursales-section {
-            background: var(--white);
-            padding: 6rem 5%;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .sucursales-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-        
-        .sucursal-card {
-            background: var(--light);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-        }
-        
-        .sucursal-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(139, 0, 0, 0.2);
-            border-color: var(--secondary-color);
-        }
-        
-        .sucursal-header {
-            background: linear-gradient(135deg, var(--primary-color), #5a0000);
-            color: white;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sucursal-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: var(--secondary-color);
-            opacity: 0.2;
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-        }
-        
-        .sucursal-numero {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--dark);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        
-        .sucursal-nombre {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .sucursal-body {
-            padding: 2rem;
-        }
-        
-        .sucursal-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .sucursal-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--primary-color);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            color: white;
-        }
-        
-        .sucursal-details h4 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .sucursal-details p {
-            color: var(--text-light);
-            margin: 0;
-            line-height: 1.6;
-        }
-        
-        .sucursal-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid #e0e0e0;
-        }
-        
-        .btn-sucursal {
-            flex: 1;
-            padding: 0.8rem;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-direcciones {
-            background: var(--secondary-color);
-            color: var(--dark);
-        }
-        
-        .btn-direcciones:hover {
-            background: #c99d2f;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-        
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-        
-        .btn-whatsapp:hover {
-            background: #20ba5a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        }
-        
-        @media (max-width: 768px) {
-            .page-header {
-                height: 40vh;
-                margin-top: 70px;
-            }
-            
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .sucursales-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .sucursal-actions {
-                flex-direction: column;
-            }
-        }
+    height: 50vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url(../images/carne4.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--light);
+    margin-top: 90px;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    font-weight: 700;
+}
+
+.page-header p {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* ===== CONTROLS SECTION ===== */
+.controls-section {
+    background: white;
+    padding: 2rem 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 90px;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.controls-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--light);
+    padding: 0.5rem;
+    border-radius: 50px;
+}
+
+.view-btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: var(--dark);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.view-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+.view-btn:hover:not(.active) {
+    background: rgba(139, 0, 0, 0.1);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+/* ===== MAIN SECTION ===== */
+.sucursales-section {
+    background: var(--light);
+    padding: 4rem 5%;
+    position: relative;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--secondary-color);
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.info-box p {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+/* ===== MAP CONTAINER ===== */
+.map-container {
+    display: none;
+    height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    margin: 0 auto 3rem;
+    max-width: 1400px;
+}
+
+.map-container.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ===== SUCURSALES GRID ===== */
+.sucursales-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.sucursales-grid.hidden {
+    display: none;
+}
+
+/* ===== SUCURSAL CARD ===== */
+.sucursal-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border: 2px solid transparent;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.sucursal-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sucursal-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 60px rgba(139, 0, 0, 0.15);
+    border-color: var(--secondary-color);
+}
+
+/* ===== HEADER ===== */
+.sucursal-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #5a0000 100%);
+    padding: 2rem 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.sucursal-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: var(--secondary-color);
+    opacity: 0.1;
+    border-radius: 50%;
+}
+
+.sucursal-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 150px;
+    height: 150px;
+    background: var(--secondary-color);
+    opacity: 0.15;
+    border-radius: 50%;
+}
+
+.sucursal-numero {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--dark);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+.sucursal-nombre {
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sucursal-zona {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+/* ===== GALERÍA DE IMÁGENES ===== */
+.sucursal-gallery {
+    position: relative;
+    background: var(--dark);
+}
+
+.gallery-main {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sucursal-card:hover .gallery-img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-main:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay span {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: 2px solid white;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--dark);
+}
+
+.thumb-img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    border: 2px solid transparent;
+}
+
+.thumb-img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: var(--secondary-color);
+    z-index: 2;
+}
+
+/* ===== BODY ===== */
+.sucursal-body {
+    padding: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    gap: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: rgba(139, 0, 0, 0.05);
+    transform: translateX(5px);
+}
+
+.info-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary-color), #5a0000);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(139, 0, 0, 0.2);
+}
+
+.info-content h4 {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-content p {
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* ===== HORARIO BADGE ===== */
+.horario-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #28a745, #20ba5a);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.horario-badge.cerrado {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* ===== SERVICIOS ===== */
+.servicios-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.servicio-tag {
+    padding: 0.4rem 1rem;
+    background: white;
+    border: 2px solid var(--secondary-color);
+    color: var(--dark);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.servicio-tag:hover {
+    background: var(--secondary-color);
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* ===== ACCIONES ===== */
+.sucursal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--light);
+}
+
+.btn-sucursal {
+    padding: 1rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.btn-direcciones {
+    background: linear-gradient(135deg, var(--secondary-color), #c99d2f);
+    color: var(--dark);
+}
+
+.btn-direcciones:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #20ba5a);
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .page-header {
+        height: 40vh;
+        margin-top: 70px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .controls-section {
+        top: 70px;
+        padding: 1.5rem 5%;
+    }
+
+    .controls-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .view-toggle,
+    .filter-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .sucursales-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .map-container {
+        height: 400px;
+    }
+
+    .sucursal-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .sucursal-nombre {
+        font-size: 1.4rem;
+    }
+
+    .gallery-main {
+        height: 220px;
+    }
+
+    .thumb-img {
+        height: 70px;
+    }
+
+    .info-box {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .sucursal-card {
+        border-radius: 15px;
+    }
+
+    .sucursal-body {
+        padding: 1.5rem;
+    }
+
+    .view-btn,
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode .controls-section {
+    background: #2a2a2a;
+}
+
+body.dark-mode .view-toggle {
+    background: #1a1a1a;
+}
+
+body.dark-mode .filter-btn {
+    background: #2a2a2a;
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+body.dark-mode .info-box {
+    background: #2a2a2a;
+}
+
+body.dark-mode .sucursal-card {
+    background: #2a2a2a;
+}
+
+body.dark-mode .info-item {
+    background: #1a1a1a;
+}
+
+body.dark-mode .servicio-tag {
+    background: #1a1a1a;
+    border-color: var(--secondary-color);
+}
+
+/* ===== TRANSICIONES SUAVES PARA JAVASCRIPT ===== */
+
+/* Transiciones para cambio de imagen en galería */
+.gallery-img {
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Transición suave para el mapa y grid */
+.map-container,
+.sucursales-grid {
+    transition: opacity 0.3s ease;
+}
+
+/* Transición para el badge de horarios */
+.horario-badge {
+    transition: all 0.2s ease;
+}
+
+/* Transición para las cards al filtrar */
+.sucursal-card {
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover effects mejorados para thumbnails */
+.thumb-img {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animación de pulso para badges abiertos */
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.5);
+    }
+}
+
+.horario-badge:not(.cerrado) {
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Efecto de carga para imágenes */
+.gallery-img[src=""],
+.gallery-img:not([src]) {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Mejora visual del parallax en header */
+.page-header {
+    will-change: transform;
+}
+
+/* Optimización de rendimiento */
+.sucursal-card,
+.gallery-img,
+.thumb-img,
+.btn-sucursal {
+    will-change: transform;
+}
+
+/* Animación de entrada para controles */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.controls-section {
+    animation: slideDown 0.5s ease-out 0.3s both;
+}
+
+/* Estado de carga para el mapa */
+.map-container iframe {
+    opacity: 0;
+    animation: fadeInMap 0.8s ease 0.3s forwards;
+}
+
+@keyframes fadeInMap {
+    to {
+        opacity: 1;
+    }
+}
