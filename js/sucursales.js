@@ -224,24 +224,8 @@ function actualizarHorarios() {
     });
 }
 
-// ===== STICKY CONTROLS CON EFECTO =====
-let lastScrollPosition = 0;
-window.addEventListener('scroll', function() {
-    const controls = document.querySelector('.controls-section');
-    
-    if (!controls) return;
-
-    const currentScroll = window.pageYOffset;
-    
-    // Efecto de sombra al hacer scroll
-    if (currentScroll > 100) {
-        controls.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
-    } else {
-        controls.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-    }
-
-    lastScrollPosition = currentScroll;
-});
+// ===== EFECTO DE SOMBRA EN CONTROLS (REMOVIDO PARA MEJOR PROFESIONALISMO) =====
+// El diseño ahora es estático con sombra fija
 
 // ===== ACTUALIZAR HORARIOS CADA MINUTO =====
 setInterval(actualizarHorarios, 60000);

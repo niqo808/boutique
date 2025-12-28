@@ -59,23 +59,22 @@ if (typeof gsap !== 'undefined') {
         if (sucursalesGrid) {
             const cards = gsap.utils.toArray('.sucursal-card');
             
-            cards.forEach((card, index) => {
-                // Animación de entrada
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 90%',
-                        toggleActions: 'play none none reverse',
-                        once: true
-                    },
-                    y: 60,
-                    opacity: 0,
-                    scale: 0.95,
-                    duration: 0.8,
-                    delay: index * 0.15,
-                    ease: 'back.out(1.2)',
-                    clearProps: 'all'
-                });
+            // Animación de entrada para todas las cards con stagger
+            gsap.from(cards, {
+                scrollTrigger: {
+                    trigger: sucursalesGrid,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                    once: true
+                },
+                y: 60,
+                opacity: 0,
+                scale: 0.95,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'back.out(1.2)',
+                clearProps: 'all'
+            });
 
                 // ===== ANIMACIONES INTERNAS DE CADA CARD =====
                 
