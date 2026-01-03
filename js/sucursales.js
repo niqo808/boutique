@@ -152,7 +152,18 @@ function initGalleryInteraction() {
         mainContainer.addEventListener('click', function() {
             // Si existe el lightbox de features.js, lo usamos
             if (typeof openLightboxImage === 'function') {
-                openLightboxImage(mainImg.src, mainImg.alt);
+                // Recopilar todas las imágenes de la galería para navegación
+                const allImages = [mainImg.src];
+                thumbs.forEach(thumb => {
+                    if (thumb.src !== mainImg.src) { // Evitar duplicados
+                        allImages.push(thumb.src);
+                    }
+                });
+                
+                // Encontrar el índice de la imagen actual
+                const currentIndex = allImages.indexOf(mainImg.src);
+                
+                openLightboxImage(mainImg.src, mainImg.alt, allImages, currentIndex);
             } else {
                 // Fallback: abrir en nueva pestaña si no hay lightbox
                 window.open(mainImg.src, '_blank');
@@ -229,24 +240,6 @@ function actualizarHorarios() {
 
 // ===== ACTUALIZAR HORARIOS CADA MINUTO =====
 setInterval(actualizarHorarios, 60000);
-
-// ===== FUNCIÓN GLOBAL PARA ABRIR LIGHTBOX (COMPATIBLE CON FEATURES.JS) =====
-// Esta función puede ser llamada desde features.js si existe
-window.openLightboxImage = function(src, alt) {
-    // Buscar el lightbox existente de features.js
-    let lightbox = document.querySelector('.lightbox');
-    
-    if (lightbox) {
-        const img = lightbox.querySelector('img');
-        const caption = lightbox.querySelector('.lightbox-caption');
-        
-        if (img) img.src = src;
-        if (caption) caption.textContent = alt || '';
-        
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-};
 
 // ===== EFECTO PARALLAX EN HEADER (OPCIONAL) =====
 window.addEventListener('scroll', function() {

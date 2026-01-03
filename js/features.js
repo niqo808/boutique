@@ -116,8 +116,10 @@ function initLightbox() {
     const prevBtn = lightbox.querySelector('.prev');
     const nextBtn = lightbox.querySelector('.next');
     
-    let currentImages = [];
-    let currentIndex = 0;
+    // Variables para navegación
+    // Variables globales para navegación
+    window.lightboxCurrentImages = [];
+    window.lightboxCurrentIndex = 0;
     
     // Hacer que las imágenes de productos sean clickeables
     const productImages = document.querySelectorAll('.product-image');
@@ -125,8 +127,8 @@ function initLightbox() {
         imgContainer.style.cursor = 'pointer';
         imgContainer.addEventListener('click', () => {
             // Obtener todas las imágenes
-            currentImages = Array.from(productImages);
-            currentIndex = index;
+            window.lightboxCurrentImages = Array.from(productImages);
+            window.lightboxCurrentIndex = index;
             
             // Obtener la URL de la imagen de fondo
             const bgImage = window.getComputedStyle(imgContainer).backgroundImage;
@@ -145,8 +147,8 @@ function initLightbox() {
     carouselImages.forEach((img, index) => {
         img.style.cursor = 'pointer';
         img.addEventListener('click', () => {
-            currentImages = Array.from(carouselImages);
-            currentIndex = index;
+            window.lightboxCurrentImages = Array.from(carouselImages);
+            window.lightboxCurrentIndex = index;
             openLightbox(img.src, img.alt);
         });
     });
@@ -164,19 +166,27 @@ function initLightbox() {
     }
     
     function showNext() {
-        currentIndex = (currentIndex + 1) % currentImages.length;
-        updateLightboxImage();
+        if (window.lightboxCurrentImages.length > 0) {
+            window.lightboxCurrentIndex = (window.lightboxCurrentIndex + 1) % window.lightboxCurrentImages.length;
+            updateLightboxImage();
+        }
     }
     
     function showPrev() {
-        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-        updateLightboxImage();
+        if (window.lightboxCurrentImages.length > 0) {
+            window.lightboxCurrentIndex = (window.lightboxCurrentIndex - 1 + window.lightboxCurrentImages.length) % window.lightboxCurrentImages.length;
+            updateLightboxImage();
+        }
     }
     
     function updateLightboxImage() {
-        const currentElement = currentImages[currentIndex];
+        const currentElement = window.lightboxCurrentImages[window.lightboxCurrentIndex];
         
-        if (currentElement.tagName === 'IMG') {
+        if (typeof currentElement === 'string') {
+            // Es una URL directa (de sucursales)
+            lightboxImg.src = currentElement;
+            lightboxCaption.textContent = '';
+        } else if (currentElement.tagName === 'IMG') {
             lightboxImg.src = currentElement.src;
             lightboxCaption.textContent = currentElement.alt;
         } else {
@@ -255,7 +265,7 @@ document.head.appendChild(style);
 
 
 // Hacer que el lightbox sea accesible globalmente para otros módulos
-window.openLightboxImage = function(imageSrc, caption) {
+window.openLightboxImage = function(imageSrc, caption, imagesArray = [], currentIndex = 0) {
     const lightbox = document.querySelector('.lightbox');
     
     if (lightbox) {
@@ -268,6 +278,14 @@ window.openLightboxImage = function(imageSrc, caption) {
         }
         if (captionEl) {
             captionEl.textContent = caption || '';
+        }
+        
+        // Configurar navegación si se pasa array
+        if (imagesArray.length > 0) {
+            window.lightboxCurrentImages = imagesArray;
+            window.lightboxCurrentIndex = currentIndex;
+        } else {
+            window.lightboxCurrentImages = [];
         }
         
         lightbox.classList.add('active');

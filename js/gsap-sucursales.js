@@ -57,18 +57,23 @@ if (typeof gsap !== 'undefined') {
         const sucursalesGrid = document.querySelector('.sucursales-grid');
         
         if (sucursalesGrid) {
+            console.log('Sucursales grid found:', sucursalesGrid);
             const cards = gsap.utils.toArray('.sucursal-card');
+            console.log('Cards found:', cards.length);
             
             // Animación de entrada para todas las cards con stagger
             gsap.from(cards, {
                 scrollTrigger: {
                     trigger: sucursalesGrid,
-                    start: 'top 85%',
+                    start: 'top bottom',
                     toggleActions: 'play none none reverse',
-                    once: true
+                    once: true,
+                    onEnter: () => console.log('ScrollTrigger activated for sucursales-grid'),
+                    onLeave: () => console.log('ScrollTrigger left for sucursales-grid'),
+                    onEnterBack: () => console.log('ScrollTrigger entered back'),
+                    onLeaveBack: () => console.log('ScrollTrigger left back')
                 },
                 y: 60,
-                opacity: 0,
                 scale: 0.95,
                 duration: 0.8,
                 stagger: 0.15,
@@ -76,7 +81,8 @@ if (typeof gsap !== 'undefined') {
                 clearProps: 'all'
             });
 
-                // ===== ANIMACIONES INTERNAS DE CADA CARD =====
+            // ===== ANIMACIONES INTERNAS DE CADA CARD =====
+            cards.forEach((card, index) => {
                 
                 // Header de la sucursal
                 const header = card.querySelector('.sucursal-header');
@@ -88,7 +94,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         y: -20,
-                        opacity: 0,
                         duration: 0.6,
                         delay: index * 0.15 + 0.2,
                         ease: 'power2.out'
@@ -105,7 +110,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         scale: 0.9,
-                        opacity: 0,
                         duration: 0.8,
                         delay: index * 0.15 + 0.3,
                         ease: 'power2.out'
@@ -122,7 +126,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         y: 20,
-                        opacity: 0,
                         duration: 0.5,
                         stagger: 0.1,
                         delay: index * 0.15 + 0.5,
@@ -140,7 +143,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         x: -30,
-                        opacity: 0,
                         duration: 0.6,
                         stagger: 0.1,
                         delay: index * 0.15 + 0.4,
@@ -158,7 +160,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         scale: 0,
-                        opacity: 0,
                         duration: 0.4,
                         stagger: 0.08,
                         delay: index * 0.15 + 0.6,
@@ -176,7 +177,6 @@ if (typeof gsap !== 'undefined') {
                             once: true
                         },
                         y: 20,
-                        opacity: 0,
                         duration: 0.5,
                         stagger: 0.1,
                         delay: index * 0.15 + 0.7,
