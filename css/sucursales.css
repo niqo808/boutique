@@ -48,7 +48,7 @@
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 2rem;
     flex-wrap: wrap;
@@ -72,6 +72,10 @@
     transition: all 0.3s ease;
     font-weight: 600;
     font-size: 0.95rem;
+}
+
+body.dark-mode .view-btn {
+    color: var(--light);
 }
 
 .view-btn.active {
@@ -189,13 +193,11 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     border: 2px solid transparent;
-    opacity: 0;
-    transform: translateY(30px);
+    /* Removido opacity y transform inicial para evitar conflictos con GSAP */
 }
 
 .sucursal-card.visible {
-    opacity: 1;
-    transform: translateY(0);
+    /* Clase mantenida para compatibilidad pero no afecta estilos */
 }
 
 .sucursal-card:hover {
@@ -266,7 +268,7 @@
 }
 
 .sucursal-zona {
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
     font-size: 0.85rem;
     margin-top: 0.3rem;
     position: relative;
@@ -627,6 +629,7 @@ body.dark-mode .info-item {
 
 body.dark-mode .servicio-tag {
     background: #1a1a1a;
+    color: var(--light);
     border-color: var(--secondary-color);
 }
 

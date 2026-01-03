@@ -1,6 +1,6 @@
 /**
  * GSAP ANIMATIONS - SUCURSALES
- * Animaciones específicas para la página de sucursales
+ * Animaciones específicas para la página de sucursales - VERSION ARREGLADA
  */
 
 // Verificar que GSAP esté disponible
@@ -10,10 +10,6 @@ if (typeof gsap !== 'undefined') {
     // Solo ejecutar si estamos en la página de sucursales
     if (document.querySelector('.sucursales-section')) {
         
-        // ===== ASEGURAR VISIBILIDAD INICIAL =====
-        gsap.set('.fade-in', { opacity: 1 });
-        gsap.set('.sucursal-card', { opacity: 1, y: 0 });
-
         // ===== PAGE HEADER - Entrada dramática =====
         gsap.from('.page-header h1', {
             y: 80,
@@ -45,7 +41,7 @@ if (typeof gsap !== 'undefined') {
             scrollTrigger: {
                 trigger: '.info-box',
                 start: 'top 85%',
-                toggleActions: 'play none none reverse'
+                toggleActions: 'play none none none'
             },
             x: -50,
             opacity: 0,
@@ -53,134 +49,37 @@ if (typeof gsap !== 'undefined') {
             ease: 'power3.out'
         });
 
-        // ===== SUCURSAL CARDS - Animación escalonada mejorada =====
+        // ===== SUCURSAL CARDS - Animación simplificada y limpia =====
         const sucursalesGrid = document.querySelector('.sucursales-grid');
         
         if (sucursalesGrid) {
-            console.log('Sucursales grid found:', sucursalesGrid);
             const cards = gsap.utils.toArray('.sucursal-card');
-            console.log('Cards found:', cards.length);
             
-            // Animación de entrada para todas las cards con stagger
-            gsap.from(cards, {
+            // Establecer estado inicial explícitamente
+            gsap.set(cards, {
+                opacity: 0,
+                y: 60
+            });
+            
+            // Animación de entrada con limpieza de propiedades
+            gsap.to(cards, {
                 scrollTrigger: {
                     trigger: sucursalesGrid,
-                    start: 'top bottom',
-                    toggleActions: 'play none none reverse',
-                    once: true,
-                    onEnter: () => console.log('ScrollTrigger activated for sucursales-grid'),
-                    onLeave: () => console.log('ScrollTrigger left for sucursales-grid'),
-                    onEnterBack: () => console.log('ScrollTrigger entered back'),
-                    onLeaveBack: () => console.log('ScrollTrigger left back')
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                    once: true
                 },
-                y: 60,
-                scale: 0.95,
+                opacity: 1,
+                y: 0,
                 duration: 0.8,
                 stagger: 0.15,
-                ease: 'back.out(1.2)',
-                clearProps: 'all'
-            });
-
-            // ===== ANIMACIONES INTERNAS DE CADA CARD =====
-            cards.forEach((card, index) => {
-                
-                // Header de la sucursal
-                const header = card.querySelector('.sucursal-header');
-                if (header) {
-                    gsap.from(header, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 85%',
-                            once: true
-                        },
-                        y: -20,
-                        duration: 0.6,
-                        delay: index * 0.15 + 0.2,
-                        ease: 'power2.out'
-                    });
-                }
-
-                // Galería de imágenes
-                const gallery = card.querySelector('.sucursal-gallery');
-                if (gallery) {
-                    gsap.from(gallery, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 80%',
-                            once: true
-                        },
-                        scale: 0.9,
-                        duration: 0.8,
-                        delay: index * 0.15 + 0.3,
-                        ease: 'power2.out'
-                    });
-                }
-
-                // Thumbnails de la galería
-                const thumbs = card.querySelectorAll('.thumb-img');
-                if (thumbs.length > 0) {
-                    gsap.from(thumbs, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 75%',
-                            once: true
-                        },
-                        y: 20,
-                        duration: 0.5,
-                        stagger: 0.1,
-                        delay: index * 0.15 + 0.5,
-                        ease: 'power2.out'
-                    });
-                }
-
-                // Items de información
-                const infoItems = card.querySelectorAll('.info-item');
-                if (infoItems.length > 0) {
-                    gsap.from(infoItems, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 75%',
-                            once: true
-                        },
-                        x: -30,
-                        duration: 0.6,
-                        stagger: 0.1,
-                        delay: index * 0.15 + 0.4,
-                        ease: 'power2.out'
-                    });
-                }
-
-                // Tags de servicios
-                const serviceTags = card.querySelectorAll('.servicio-tag');
-                if (serviceTags.length > 0) {
-                    gsap.from(serviceTags, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 70%',
-                            once: true
-                        },
-                        scale: 0,
-                        duration: 0.4,
-                        stagger: 0.08,
-                        delay: index * 0.15 + 0.6,
-                        ease: 'back.out(2)'
-                    });
-                }
-
-                // Botones de acción
-                const actionButtons = card.querySelectorAll('.btn-sucursal');
-                if (actionButtons.length > 0) {
-                    gsap.from(actionButtons, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 70%',
-                            once: true
-                        },
-                        y: 20,
-                        duration: 0.5,
-                        stagger: 0.1,
-                        delay: index * 0.15 + 0.7,
-                        ease: 'power2.out'
+                ease: 'power3.out',
+                clearProps: 'transform,opacity',
+                onComplete: function() {
+                    // Asegurar que todas las propiedades están limpias después de la animación
+                    cards.forEach(card => {
+                        card.style.opacity = '';
+                        card.style.transform = '';
                     });
                 }
             });
@@ -193,12 +92,13 @@ if (typeof gsap !== 'undefined') {
                 scrollTrigger: {
                     trigger: mapContainer,
                     start: 'top 85%',
-                    toggleActions: 'play none none reverse'
+                    toggleActions: 'play none none none'
                 },
                 scale: 0.95,
                 opacity: 0,
                 duration: 1,
-                ease: 'power2.out'
+                ease: 'power2.out',
+                clearProps: 'all'
             });
         }
 
@@ -211,7 +111,8 @@ if (typeof gsap !== 'undefined') {
                 gsap.to(this, {
                     y: -12,
                     duration: 0.4,
-                    ease: 'power2.out'
+                    ease: 'power2.out',
+                    overwrite: 'auto'
                 });
 
                 // Animar número de sucursal
@@ -221,7 +122,8 @@ if (typeof gsap !== 'undefined') {
                         scale: 1.1,
                         rotate: 360,
                         duration: 0.5,
-                        ease: 'back.out(2)'
+                        ease: 'back.out(2)',
+                        overwrite: 'auto'
                     });
                 }
             });
@@ -230,7 +132,8 @@ if (typeof gsap !== 'undefined') {
                 gsap.to(this, {
                     y: 0,
                     duration: 0.4,
-                    ease: 'power2.out'
+                    ease: 'power2.out',
+                    overwrite: 'auto'
                 });
 
                 const numero = this.querySelector('.sucursal-numero');
@@ -239,7 +142,8 @@ if (typeof gsap !== 'undefined') {
                         scale: 1,
                         rotate: 0,
                         duration: 0.4,
-                        ease: 'power2.out'
+                        ease: 'power2.out',
+                        overwrite: 'auto'
                     });
                 }
             });
@@ -252,7 +156,8 @@ if (typeof gsap !== 'undefined') {
                         y: -3,
                         scale: 1.02,
                         duration: 0.3,
-                        ease: 'power2.out'
+                        ease: 'power2.out',
+                        overwrite: 'auto'
                     });
                 });
 
@@ -261,7 +166,8 @@ if (typeof gsap !== 'undefined') {
                         y: 0,
                         scale: 1,
                         duration: 0.3,
-                        ease: 'power2.out'
+                        ease: 'power2.out',
+                        overwrite: 'auto'
                     });
                 });
             });
@@ -282,21 +188,7 @@ if (typeof gsap !== 'undefined') {
             }
         });
 
-        // ===== PARALLAX SUAVE EN ELEMENTOS =====
-        gsap.utils.toArray('.sucursal-header').forEach(header => {
-            gsap.to(header, {
-                scrollTrigger: {
-                    trigger: header,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1
-                },
-                y: -30,
-                ease: 'none'
-            });
-        });
-
-        console.log('✨ GSAP Sucursales - Animaciones cargadas');
+        console.log('✨ GSAP Sucursales - Animaciones cargadas correctamente');
     }
 } else {
     console.warn('⚠️ GSAP no está disponible. Las animaciones no se cargarán.');

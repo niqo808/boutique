@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Solo inicializar si estamos en la página de sucursales
     if (document.querySelector('.sucursales-section')) {
         initViewToggle();
-        initFilters();
         initGalleryInteraction();
         actualizarHorarios();
+        mostrarTodasLasCards(); // Mostrar todas las cards al inicio
         
         console.log('✅ Módulo de Sucursales cargado');
     }
@@ -56,42 +56,10 @@ function initViewToggle() {
     });
 }
 
-// ===== FILTROS POR ZONA =====
-function initFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+// ===== MOSTRAR TODAS LAS CARDS =====
+function mostrarTodasLasCards() {
     const cards = document.querySelectorAll('.sucursal-card');
-
-    if (!filterButtons.length) return;
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const zona = this.getAttribute('data-zona');
-
-            // Actualizar botones activos
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Filtrar cards con animación
-            cards.forEach((card, index) => {
-                const cardZona = card.getAttribute('data-zona');
-
-                if (zona === 'todas' || cardZona === zona) {
-                    // Mostrar card
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, index * 50);
-                } else {
-                    // Ocultar card
-                    card.classList.remove('visible');
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-
+    
     // Mostrar todas las cards al inicio con delay escalonado
     setTimeout(() => {
         cards.forEach((card, index) => {
