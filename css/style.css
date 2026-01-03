@@ -318,8 +318,7 @@ nav.scrolled {
 /* === HERO SECTION === */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(139, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.6) 100%), 
-                url('../images/carne4.jpg');
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgb(0 0 0 / 75%) 50%, rgba(0, 0, 0, 0.6) 100%), url(../images/carne4.jpg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
