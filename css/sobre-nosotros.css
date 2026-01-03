@@ -492,9 +492,7 @@ body.dark-mode .timeline-content h3 {
     color: var(--dark);
 }
 
-/* ===== ANIMATIONS CLASSES ===== */
-/* Clases removidas - GSAP maneja toda la animación */
-/* NO establecer opacity: 0 aquí para evitar que los elementos queden invisibles */
+
 .reveal-text,
 .reveal-scale,
 .reveal-card,
