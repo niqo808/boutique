@@ -1,3 +1,10 @@
+/* ============================
+   CONTACTO - LA PAZ
+   ============================ */
+
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap');
+
 .page-header {
     height: 60vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/contacto.jpg);
@@ -17,13 +24,22 @@
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--white);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    /* Efecto de dos colores */
+    color: #fff;
+    text-shadow: 
+        2px 2px 0px var(--primary-color),
+        3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .page-header p {
     font-size: 1.3rem;
     color: var(--secondary-color);
     text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    text-transform: uppercase;
 }
 
 .contact-section {
@@ -54,6 +70,17 @@
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    /* Efecto de dos colores */
+    color: var(--primary-color);
+    -webkit-text-stroke: 1.5px var(--secondary-color);
+    text-stroke: 1.5px var(--secondary-color);
+    text-shadow: 
+        2px 2px 0px var(--secondary-color),
+        3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .contact-info > div:first-child p {
@@ -105,6 +132,10 @@ body.dark-mode .contact-info .p_info {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     color: var(--dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 1px;
 }
 
 .contact-item-content p {
@@ -128,6 +159,17 @@ body.dark-mode .contact-info .p_info {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    /* Efecto de dos colores */
+    color: var(--primary-color);
+    -webkit-text-stroke: 1px var(--secondary-color);
+    text-stroke: 1px var(--secondary-color);
+    text-shadow: 
+        1px 1px 0px var(--secondary-color),
+        2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {

@@ -2,6 +2,9 @@
    SOBRE NOSOTROS - LA PAZ
    ============================ */
 
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap');
+
 /* ===== VARIABLES Y RESET ===== */
 .container-custom {
     max-width: 1400px;
@@ -47,7 +50,13 @@
     font-weight: 900;
     margin-bottom: 1rem;
     letter-spacing: 3px;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    /* Efecto de dos colores */
+    color: #fff;
+    text-shadow: 
+        2px 2px 0px var(--primary-color),
+        3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subtitle {
@@ -56,6 +65,7 @@
     font-style: italic;
     font-weight: 300;
     margin-bottom: 3rem;
+    text-transform: uppercase;
 }
 
 .hero-scroll-indicator {

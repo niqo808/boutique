@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cortes premium de carne - La Paz. Calidad excepcional, maduración perfecta.">
+    <title>Productos - La Paz</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/logo.png">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/features.css">
+    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="../css/fix-filtros.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo title">
+                <div class="brand-icon">
+                    <img src="../images/logo2.png" alt="Logo La Paz" class="logo-img">
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="sobre-nosotros.html">Nosotros</a></li>
+                <li><a href="productos.html" class="active">Productos</a></li>
+                <li><a href="sucursales.html">Sucursales</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="sistema.html">Acceso al Sistema</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="products-hero">
+        <div class="products-hero-overlay"></div>
+        <div class="products-hero-content">
+            <h1 class="hero-title-products">Nuestros Cortes Premium</h1>
+            <p class="hero-subtitle-products">Calidad excepcional en cada pieza</p>
+            <div class="hero-features">
+                <div class="feature-badge">
+                    <i class="fas fa-certificate"></i>
+                    <span>Certificados</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Maduración Controlada</span>
+                </div>
+                <div class="feature-badge">
+                    <i class="fas fa-truck"></i>
+                    <span>Entrega en 24hs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTERS SECTION -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <h3 class="filters-title">Tipos de Carne</h3>
+            <div class="filter-buttons-products">
+                <button class="filter-btn-product active" data-category="all">
+                    <i class="fas fa-th"></i> Todos
+                </button>
+                <button class="filter-btn-product" data-category="vacuna">
+                    <i class="fas fa-cow"></i> Vacuna
+                </button>
+                <button class="filter-btn-product" data-category="cerdo">
+                    <i class="fas fa-bacon"></i> Cerdo
+                </button>
+                <button class="filter-btn-product" data-category="pollo">
+                    <i class="fas fa-drumstick-bite"></i> Pollo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="products-main-section">
+        <div class="products-main-container">
+            
+            <!-- Producto 1: Bife de Chorizo -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-badge-premium">Premium</div>
+                <div class="product-image-full" style="background-image: url('../images/bife_chorizo.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="bife-chorizo">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Bife de Chorizo</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="product-description">
+                        Corte estrella argentino con marmoleado excepcional. Jugoso, tierno y con sabor intenso.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> 400-500g
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Parrilla
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 15-20min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="bife-chorizo">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2: Lomo -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-badge-premium">Premium</div>
+                <div class="product-image-full" style="background-image: url('../images/carne2.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="lomo">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Lomo</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="product-description">
+                        El corte más tierno y magro. Ideal para ocasiones especiales y preparaciones gourmet.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> 300-400g
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Plancha
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 10-15min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="lomo">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3: Bife Ancho -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-badge-premium">Premium</div>
+                <div class="product-image-full" style="background-image: url('../images/carne3.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="bife-ancho">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Bife Ancho</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">
+                        Corte generoso con hueso. Sabor intenso y textura perfecta para parrilla.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> 500-600g
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Parrilla
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 15-20min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="bife-ancho">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 4: Bife Angosto -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-image-full" style="background-image: url('../images/carne4.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="bife-angosto">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Bife Angosto</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="product-description">
+                        Corte magro y sabroso. Ideal para quienes buscan menos grasa sin sacrificar sabor.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> 300-400g
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Parrilla/Plancha
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 12-18min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="bife-angosto">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 5: Asado de Tira -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-image-full" style="background-image: url('../images/carne6.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="asado-tira">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Asado de Tira</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <p class="product-description">
+                        Clásico argentino para parrilladas. Jugoso y con hueso que aporta sabor único.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> Por kg
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Parrilla
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 20-25min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="asado-tira">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 6: Vacío -->
+            <div class="product-card-full" data-category="vacuna">
+                <div class="product-image-full" style="background-image: url('../images/carne7.jpg');">
+                    <div class="product-overlay-full">
+                        <button class="btn-view-detail" data-product="vacio">
+                            <i class="fas fa-search-plus"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div class="product-content-full">
+                    <h3 class="product-name">Vacío</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="product-description">
+                        Corte versátil y jugoso. Perfecto para parrilla o al horno con su capa de grasa característica.
+                    </p>
+                    <div class="product-specs">
+                        <span class="spec-item">
+                            <i class="fas fa-weight"></i> Por kg
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-fire"></i> Parrilla/Horno
+                        </span>
+                        <span class="spec-item">
+                            <i class="fas fa-clock"></i> 25-30min
+                        </span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="../pages/contacto.html" class="btn-product-primary">
+                            <i class="fas fa-shopping-cart"></i> Consultar
+                        </a>
+                        <button class="btn-product-secondary" data-product="vacio">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MODAL DE DETALLES -->
+    <div class="product-modal" id="productModal">
+        <div class="modal-overlay-product"></div>
+        <div class="modal-content-product">
+            <button class="modal-close-product">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body-product">
+                <div class="modal-image-section">
+                    <img src="" alt="" id="modalImage" class="modal-product-image">
+                </div>
+                <div class="modal-info-section">
+                    <h2 id="modalTitle" class="modal-product-title"></h2>
+                    <div id="modalRating" class="modal-rating"></div>
+                    <p id="modalDescription" class="modal-description"></p>
+                    
+                    <div class="modal-details-grid">
+                        <div class="detail-item">
+                            <i class="fas fa-weight"></i>
+                            <div>
+                                <strong>Peso promedio</strong>
+                                <p id="modalWeight"></p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-fire"></i>
+                            <div>
+                                <strong>Cocción ideal</strong>
+                                <p id="modalCooking"></p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Tiempo</strong>
+                                <p id="modalTime"></p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-thermometer-half"></i>
+                            <div>
+                                <strong>Temperatura</strong>
+                                <p id="modalTemp"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-recommendations">
+                        <h4><i class="fas fa-lightbulb"></i> Recomendaciones del Chef</h4>
+                        <ul id="modalRecommendations"></ul>
+                    </div>
+
+                    <div class="modal-actions">
+                        <a href="../pages/contacto.html" class="btn-modal-primary">
+                            <i class="fas fa-envelope"></i> Consultar Disponibilidad
+                        </a>
+                        <a href="https://wa.me/5491112345678" class="btn-modal-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>¿Necesitás Asesoramiento?</h2>
+            <p>Nuestros expertos pueden ayudarte a elegir el corte perfecto para tu ocasión</p>
+            <div class="cta-buttons">
+                <a href="contacto.html" class="cta-button">Contactanos</a>
+                <a href="sucursales.html" class="cta-button cta-secondary">Ver Sucursales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section logo-container">
+                <img src="../images/logo.png" alt="Logo La Paz" class="logo">
+                <span class="logo-text">Excelencia en cada corte desde 1994</span>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="sobre-nosotros.html">Nosotros</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="sucursales.html">Sucursales</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="sistema.html">Acceso al Sistema</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📍 Av. Principal 1234, Buenos Aires</p>
+                <p>📞 +54 11 1234-5678</p>
+                <p>✉️ info@boutiquelapaz.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Seguínos</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="WhatsApp">💬</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 La Paz. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/features.js"></script>
+    <script src="../js/productos.js"></script>
+    <script src="../js/gsap-productos.js"></script>
+    
+</body>
+</html>

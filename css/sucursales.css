@@ -2,6 +2,9 @@
    SUCURSALES - LA PAZ
    ============================ */
 
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap');
+
 /* ===== PAGE HEADER ===== */
 .page-header {
     height: 50vh;
@@ -23,14 +26,22 @@
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--white);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-    font-weight: 700;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    /* Efecto de dos colores */
+    color: #fff;
+    text-shadow: 
+        2px 2px 0px var(--primary-color),
+        3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .page-header p {
     font-size: 1.3rem;
     color: var(--secondary-color);
     text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    text-transform: uppercase;
 }
 
 /* ===== CONTROLS SECTION ===== */
@@ -138,7 +149,16 @@ body.dark-mode .view-btn {
     color: var(--primary-color);
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    /* Efecto de dos colores */
+    color: var(--primary-color);
+    -webkit-text-stroke: 1px var(--secondary-color);
+    text-shadow: 
+        1px 1px 0px var(--secondary-color),
+        2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .info-box p {
@@ -259,12 +279,18 @@ body.dark-mode .view-btn {
 .sucursal-nombre {
     color: white;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 900;
     margin: 0;
     position: relative;
     z-index: 1;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    /* Efecto de dos colores */
+    color: #fff;
+    text-shadow: 
+        1px 1px 0px var(--primary-color),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .sucursal-zona {
@@ -274,6 +300,8 @@ body.dark-mode .view-btn {
     position: relative;
     z-index: 1;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* ===== GALERÍA DE IMÁGENES ===== */

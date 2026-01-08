@@ -2,6 +2,9 @@
    Boutique La Paz - MAIN STYLESHEET
    ============================================ */
 
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&display=swap');
+
 /* === VARIABLES === */
 :root {
     --primary-color: #8B0000;
@@ -31,7 +34,7 @@ html {
 
 body {
 
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow Condensed', 'Inter', sans-serif;
     color: var(--dark);
     overflow-x: hidden;
     background: var(--light);
@@ -114,7 +117,7 @@ ul {
 
 .slide-text h2 {
     font-size: 2.6rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #8B0000;
     margin-bottom: 15px;
 }
@@ -278,7 +281,7 @@ nav.scrolled {
 
 .nav-links a {
     color: var(--light);
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: color 0.3s ease;
     position: relative;
     font-weight: 500;
@@ -341,8 +344,14 @@ nav.scrolled {
     margin-bottom: 1rem;
     margin-top: 3rem;
     letter-spacing: 3px;
-    font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.3);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    /* Efecto de dos colores */
+    color: #fff;
+    text-shadow: 
+        2px 2px 0px var(--primary-color),
+        3px 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subtitle {
@@ -350,7 +359,8 @@ nav.scrolled {
     color: var(--secondary-color);
     margin-bottom: 2rem;
     font-style: italic;
-    font-weight: 600;
+    font-weight: 300;
+    text-transform: uppercase;
 }
 
 .hero-description {
@@ -412,6 +422,16 @@ section {
     font-size: 3rem;
     margin-bottom: 1rem;
     color: var(--dark);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    /* Efecto de dos colores - más visible */
+    color: var(--primary-color);
+    -webkit-text-stroke: 1.5px var(--secondary-color);
+    text-shadow: 
+        2px 2px 0px var(--secondary-color),
+        3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .section-subtitle {
@@ -420,6 +440,7 @@ section {
     font-size: 1.2rem;
     margin-bottom: 4rem;
     font-style: italic;
+    text-transform: uppercase;
 }
 
 /* === ABOUT SECTION === */
@@ -765,8 +786,9 @@ footer {
 
 /* ===== PREMIUM TYPOGRAPHY ===== */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow Condensed', 'Inter', sans-serif;
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* ===== ENHANCED COLORS AND BACKGROUNDS ===== */
