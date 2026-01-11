@@ -196,39 +196,50 @@
 .product-card-full {
     background: white;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible !important; /* CAMBIADO - para que se vea el badge */
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     display: flex;
     flex-direction: column;
+    /* Optimización de rendimiento */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .product-card-full:hover {
-    transform: translateY(-15px);
+    transform: translateY(-15px) translateZ(0);
     box-shadow: 0 20px 60px rgba(139, 0, 0, 0.2);
 }
 
 /* Badge Premium */
 .product-badge-premium {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, var(--secondary-color), #c99d2f);
-    padding: 0.6rem 1.8rem;
-    border-radius: 50px;
-    font-weight: 900;
-    font-size: 0.9rem;
-    z-index: 10;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    background: linear-gradient(135deg, var(--secondary-color), #c99d2f) !important;
+    padding: 0.6rem 1.8rem !important;
+    border-radius: 50px !important;
+    font-weight: 900 !important;
+    font-size: 0.9rem !important;
+    z-index: 1000 !important; /* Aumentado muchísimo */
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-family: 'Barlow Condensed', 'Montserrat', sans-serif !important;
     /* Efecto de dos colores en el badge */
-    color: var(--dark);
+    color: var(--dark) !important;
     text-shadow: 
         1px 1px 0px rgba(255, 255, 255, 0.3),
-        0px 1px 2px rgba(0, 0, 0, 0.3);
+        0px 1px 2px rgba(0, 0, 0, 0.3) !important;
+    /* Asegurar visibilidad TOTAL */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: translateZ(100px) !important; /* Forzar al frente */
+    will-change: transform !important;
+    pointer-events: all !important;
 }
 
 /* Imagen del producto */
@@ -239,6 +250,11 @@
     background-position: center;
     position: relative;
     overflow: hidden;
+    border-radius: 20px 20px 0 0; /* Redondear solo arriba */
+    /* Optimización */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .product-overlay-full {

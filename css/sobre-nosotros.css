@@ -69,23 +69,66 @@
 }
 
 .hero-scroll-indicator {
-    display: flex;
+    display: inline-flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 4rem;
-    opacity: 0.8;
+    opacity: 1 !important;
+    /* Estilo MINIMALISTA */
+    background: transparent !important;
+    border: none !important;
+    color: var(--secondary-color) !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem 2rem;
+    font-weight: 400 !important;
+    z-index: 10;
+    visibility: visible !important;
+}
+
+.hero-scroll-indicator:hover {
+    opacity: 1 !important;
+    transform: translateY(-3px);
+    color: #fff !important;
+}
+
+.hero-scroll-indicator:active {
+    transform: translateY(0px);
 }
 
 .hero-scroll-indicator span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: var(--secondary-color) !important;
+    font-weight: 400 !important;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.hero-scroll-indicator:hover span {
+    opacity: 1;
+    color: #fff !important;
 }
 
 .scroll-arrow {
-    font-size: 2rem;
+    font-size: 1.8rem;
     animation: bounce 2s infinite;
+    color: var(--secondary-color) !important;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.hero-scroll-indicator:hover .scroll-arrow {
+    opacity: 1;
+    color: #fff !important;
+    animation: bounceHover 1s infinite;
+}
+
+@keyframes bounceHover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
 }
 
 @keyframes bounce {

@@ -28,15 +28,24 @@ if (typeof gsap !== 'undefined') {
             delay: 0.5
         });
 
-        // Animación escalonada de los feature badges
-        gsap.from('.feature-badge', {
-            scale: 0,
-            opacity: 0,
-            duration: 0.6,
-            ease: 'back.out(2)',
-            stagger: 0.15,
-            delay: 0.8
-        });
+                // Animación escalonada de los feature badges (entrada sutil y ligada al scroll)
+                gsap.fromTo('.feature-badge',
+                    { y: 14, scale: 0.96, autoAlpha: 0, transformOrigin: '50% 50%', force3D: true, immediateRender: false },
+                    {
+                        y: 0,
+                        scale: 1,
+                        autoAlpha: 1,
+                        duration: 0.6,
+                        ease: 'power3.out',
+                        stagger: { each: 0.12, from: 'center' },
+                        scrollTrigger: {
+                            trigger: '.products-hero',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                            once: true
+                        }
+                    }
+                );
 
         // Parallax del hero
         gsap.to('.products-hero', {
@@ -80,41 +89,54 @@ if (typeof gsap !== 'undefined') {
         });
 
         // ===== PRODUCT CARDS =====
+        // Optimización: usar gsap.set para mejor rendimiento
+        gsap.set('.product-card-full', {
+            force3D: true,
+            transformPerspective: 1000
+        });
+        
         const productCards = gsap.utils.toArray('.product-card-full');
         
         productCards.forEach((card, index) => {
-            // Animación más suave con from en lugar de to
+            // Animación más ligera y suave
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: 'top 90%',
-                    toggleActions: 'play none none reverse',
+                    start: 'top 95%',
+                    toggleActions: 'play none none none',
                     once: true
                 },
-                y: 100,
+                y: 60,
                 opacity: 0,
-                scale: 0.9,
-                duration: 0.9,
-                ease: 'power3.out',
-                delay: index * 0.12
+                duration: 0.6,
+                ease: 'power2.out',
+                delay: index * 0.08,
+                force3D: true
             });
 
-            // Animación del badge premium
+            // Animación del badge premium - más ligera y SIN ocultar
             const badge = card.querySelector('.product-badge-premium');
             if (badge) {
+                // Asegurar que el badge sea visible desde el inicio
+                gsap.set(badge, {
+                    opacity: 1,
+                    visibility: 'visible',
+                    display: 'block',
+                    zIndex: 1000
+                });
+                
                 gsap.from(badge, {
                     scrollTrigger: {
                         trigger: card,
-                        start: 'top 85%',
+                        start: 'top 95%',
                         toggleActions: 'play none none none',
                         once: true
                     },
-                    scale: 0,
-                    rotation: 360,
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: 'back.out(2)',
-                    delay: 0.3 + (index * 0.1)
+                    scale: 0.5,
+                    duration: 0.4,
+                    ease: 'back.out(1.7)',
+                    delay: 0.2 + (index * 0.08),
+                    force3D: true
                 });
             }
         });
@@ -124,49 +146,33 @@ if (typeof gsap !== 'undefined') {
             const image = card.querySelector('.product-image-full');
             const badge = card.querySelector('.product-badge-premium');
             
+            // Usar GSAP quickTo para mejor rendimiento
+            const xTo = gsap.quickTo(card, 'y', {duration: 0.3, ease: 'power2.out'});
+            const scaleToImage = gsap.quickTo(image, 'scale', {duration: 0.3, ease: 'power2.out'});
+            
             card.addEventListener('mouseenter', () => {
-                gsap.to(card, {
-                    y: -15,
-                    duration: 0.5,
-                    ease: 'power2.out',
-                    overwrite: 'auto'
-                });
-
-                gsap.to(image, {
-                    scale: 1.15,
-                    duration: 0.5,
-                    ease: 'power2.out'
-                });
+                xTo(-15);
+                scaleToImage(1.1);
 
                 if (badge) {
                     gsap.to(badge, {
                         rotation: 5,
-                        scale: 1.1,
-                        duration: 0.3,
-                        ease: 'back.out(2)'
+                        scale: 1.05,
+                        duration: 0.2,
+                        ease: 'power2.out'
                     });
                 }
             });
 
             card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    y: 0,
-                    duration: 0.5,
-                    ease: 'power2.out',
-                    overwrite: 'auto'
-                });
-
-                gsap.to(image, {
-                    scale: 1,
-                    duration: 0.5,
-                    ease: 'power2.out'
-                });
+                xTo(0);
+                scaleToImage(1);
 
                 if (badge) {
                     gsap.to(badge, {
                         rotation: 0,
                         scale: 1,
-                        duration: 0.3,
+                        duration: 0.2,
                         ease: 'power2.out'
                     });
                 }

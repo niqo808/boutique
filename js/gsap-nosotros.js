@@ -4,7 +4,7 @@
  */
 
 if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // Solo ejecutar si estamos en la página sobre-nosotros
     if (document.querySelector('.hero-nosotros')) {
@@ -430,6 +430,28 @@ if (typeof gsap !== 'undefined') {
         // ===== ANIMACIÓN DE LA LÍNEA DEL TIMELINE (REMOVIDA - causa error) =====
         // No se puede animar pseudo-elementos ::before directamente con GSAP
         // La línea se muestra normalmente sin animación
+
+        // ===== BOTÓN DE SCROLL =====
+        const scrollButton = document.getElementById('scrollButton');
+        const introSection = document.getElementById('intro-section');
+        
+        if (scrollButton && introSection) {
+            scrollButton.addEventListener('click', () => {
+                // Usar GSAP para scroll suave - MÁS RÁPIDO
+                gsap.to(window, {
+                    duration: 0.8, // Reducido de 1.5s a 0.8s
+                    scrollTo: {
+                        y: introSection,
+                        offsetY: 100 // Para dejar espacio con el navbar
+                    },
+                    ease: 'power2.inOut' // Ease más rápido
+                });
+                
+                console.log('👆 Scroll hacia intro-section');
+            });
+            
+            console.log('✅ Botón de scroll configurado');
+        }
 
         console.log('✨ Animaciones de Sobre Nosotros cargadas correctamente');
     }
