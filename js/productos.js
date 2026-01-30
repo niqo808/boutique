@@ -110,25 +110,9 @@ const productsData = {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Verificar que los elementos existan
-    const filtersSection = document.querySelector('.filters-section');
-    const filterButtons = document.querySelectorAll('.filter-btn-product');
-    
-    console.log('👁️ Verificando elementos...');
-    console.log('Sección de filtros:', filtersSection);
-    console.log('Cantidad de botones:', filterButtons.length);
-    
-    // Forzar visibilidad
-    if (filtersSection) {
-        filtersSection.style.display = 'block';
-        filtersSection.style.visibility = 'visible';
-        filtersSection.style.opacity = '1';
-        console.log('✅ Filtros forzados a visible');
-    }
-    
+    console.log('✅ Módulo de Productos cargado');
     initFilters();
     initModal();
-    console.log('✅ Módulo de Productos cargado');
 });
 
 // ===== SISTEMA DE FILTROS =====
@@ -245,19 +229,3 @@ function initModal() {
         document.body.style.overflow = '';
     }
 }
-
-// Animación de entrada
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);

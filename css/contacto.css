@@ -77,7 +77,6 @@
     /* Efecto de dos colores */
     color: var(--primary-color);
     -webkit-text-stroke: 1.5px var(--secondary-color);
-    text-stroke: 1.5px var(--secondary-color);
     text-shadow: 
         2px 2px 0px var(--secondary-color),
         3px 3px 5px rgba(0, 0, 0, 0.2);
@@ -158,17 +157,18 @@ body.dark-mode .contact-info .p_info {
 .contact-form h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: var(--primary-color);
+    color: var(--primary-color); /* fill color */
+    -webkit-text-fill-color: var(--primary-color);
     font-weight: 900;
     text-transform: uppercase;
     font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
     letter-spacing: 2px;
-    /* Efecto de dos colores */
-    color: var(--primary-color);
     -webkit-text-stroke: 1px var(--secondary-color);
-    text-stroke: 1px var(--secondary-color);
-    text-shadow: 
-        1px 1px 0px var(--secondary-color),
+    text-shadow:
+        1px 1px 0 var(--secondary-color),
+        -1px -1px 0 var(--secondary-color),
+        1px -1px 0 var(--secondary-color),
+        -1px 1px 0 var(--secondary-color),
         2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

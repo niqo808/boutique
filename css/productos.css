@@ -107,9 +107,10 @@
     background: white;
     padding: 3rem 5%;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    display: block !important;
-    visibility: visible !important;
+}
+
+.filter-buttons-products{
+    padding-left: 150px;
 }
 
 .filters-container {
@@ -122,7 +123,8 @@
 
 .filters-title {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0px;
+    align-self: center;
     font-weight: 900;
     text-align: center;
     font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
@@ -143,6 +145,8 @@
     flex-wrap: wrap;
     visibility: visible !important;
 }
+
+
 
 .filter-btn-product {
     padding: 0.8rem 2rem;
@@ -762,9 +766,6 @@ body.dark-mode .modal-recommendations {
     opacity: 1 !important;
 }
 
-.filters-section {
-    display: block !important;
-}
 
 /* ===== ALL CAPS EN TODO EL SITIO ===== */
 .hero-title-products,

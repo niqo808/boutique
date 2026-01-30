@@ -28,24 +28,22 @@ if (typeof gsap !== 'undefined') {
             delay: 0.5
         });
 
-                // Animación escalonada de los feature badges (entrada sutil y ligada al scroll)
-                gsap.fromTo('.feature-badge',
-                    { y: 14, scale: 0.96, autoAlpha: 0, transformOrigin: '50% 50%', force3D: true, immediateRender: false },
-                    {
-                        y: 0,
-                        scale: 1,
-                        autoAlpha: 1,
-                        duration: 0.6,
-                        ease: 'power3.out',
-                        stagger: { each: 0.12, from: 'center' },
-                        scrollTrigger: {
-                            trigger: '.products-hero',
-                            start: 'top 80%',
-                            toggleActions: 'play none none none',
-                            once: true
-                        }
-                    }
-                );
+        // Animación escalonada de los feature badges con LIMPIEZA DE PROPIEDADES
+        gsap.from('.feature-badge', {
+            y: 14,
+            scale: 0.96,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+                trigger: '.products-hero',
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+                once: true
+            },
+            clearProps: 'all' // ✅ Limpiar todas las propiedades después de la animación
+        });
 
         // Parallax del hero
         gsap.to('.products-hero', {
@@ -59,7 +57,7 @@ if (typeof gsap !== 'undefined') {
             ease: 'none'
         });
 
-        // ===== FILTERS SECTION =====
+        // ===== FILTERS SECTION - ARREGLADO =====
         gsap.from('.filters-title', {
             scrollTrigger: {
                 trigger: '.filters-section',
@@ -70,9 +68,11 @@ if (typeof gsap !== 'undefined') {
             y: 20,
             opacity: 0,
             duration: 0.6,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            clearProps: 'all' // ✅ Limpiar propiedades
         });
 
+        // ✅ ARREGLO CRÍTICO: Limpiar propiedades de los botones de filtro
         gsap.from('.filter-btn-product', {
             scrollTrigger: {
                 trigger: '.filters-section',
@@ -85,11 +85,19 @@ if (typeof gsap !== 'undefined') {
             duration: 0.5,
             ease: 'back.out(2)',
             stagger: 0.08,
-            delay: 0.3
+            delay: 0.3,
+            clearProps: 'all', // ✅ Limpiar TODAS las propiedades
+            onComplete: function() {
+                // ✅ Asegurar que los botones queden en su estado normal
+                document.querySelectorAll('.filter-btn-product').forEach(btn => {
+                    btn.style.transform = '';
+                    btn.style.scale = '';
+                    btn.style.opacity = '';
+                });
+            }
         });
 
         // ===== PRODUCT CARDS =====
-        // Optimización: usar gsap.set para mejor rendimiento
         gsap.set('.product-card-full', {
             force3D: true,
             transformPerspective: 1000
@@ -98,7 +106,6 @@ if (typeof gsap !== 'undefined') {
         const productCards = gsap.utils.toArray('.product-card-full');
         
         productCards.forEach((card, index) => {
-            // Animación más ligera y suave
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
@@ -111,13 +118,13 @@ if (typeof gsap !== 'undefined') {
                 duration: 0.6,
                 ease: 'power2.out',
                 delay: index * 0.08,
-                force3D: true
+                force3D: true,
+                clearProps: 'all' // ✅ Limpiar propiedades
             });
 
-            // Animación del badge premium - más ligera y SIN ocultar
+            // Animación del badge premium
             const badge = card.querySelector('.product-badge-premium');
             if (badge) {
-                // Asegurar que el badge sea visible desde el inicio
                 gsap.set(badge, {
                     opacity: 1,
                     visibility: 'visible',
@@ -136,7 +143,8 @@ if (typeof gsap !== 'undefined') {
                     duration: 0.4,
                     ease: 'back.out(1.7)',
                     delay: 0.2 + (index * 0.08),
-                    force3D: true
+                    force3D: true,
+                    clearProps: 'scale' // Solo limpiar scale, mantener display y visibility
                 });
             }
         });
@@ -146,7 +154,6 @@ if (typeof gsap !== 'undefined') {
             const image = card.querySelector('.product-image-full');
             const badge = card.querySelector('.product-badge-premium');
             
-            // Usar GSAP quickTo para mejor rendimiento
             const xTo = gsap.quickTo(card, 'y', {duration: 0.3, ease: 'power2.out'});
             const scaleToImage = gsap.quickTo(image, 'scale', {duration: 0.3, ease: 'power2.out'});
             
@@ -197,7 +204,8 @@ if (typeof gsap !== 'undefined') {
                 rotation: 360,
                 duration: 0.4,
                 ease: 'back.out(2)',
-                stagger: 0.08
+                stagger: 0.08,
+                clearProps: 'all' // ✅ Limpiar propiedades
             });
         });
 
@@ -218,7 +226,8 @@ if (typeof gsap !== 'undefined') {
                 opacity: 0,
                 duration: 0.5,
                 ease: 'power2.out',
-                stagger: 0.1
+                stagger: 0.1,
+                clearProps: 'all' // ✅ Limpiar propiedades
             });
         });
 
@@ -239,12 +248,12 @@ if (typeof gsap !== 'undefined') {
                 opacity: 0,
                 duration: 0.5,
                 ease: 'power2.out',
-                stagger: 0.1
+                stagger: 0.1,
+                clearProps: 'all' // ✅ Limpiar propiedades
             });
         });
 
         // ===== MODAL ANIMATIONS =====
-        // Observer para detectar cuando el modal se abre
         const modal = document.getElementById('productModal');
         if (modal) {
             const observer = new MutationObserver((mutations) => {
@@ -268,10 +277,8 @@ if (typeof gsap !== 'undefined') {
             const recommendations = document.querySelector('.modal-recommendations');
             const modalActions = document.querySelectorAll('.modal-actions button, .modal-actions a');
 
-            // Reset inicial
             gsap.set([modalImage, modalInfo], { opacity: 0 });
 
-            // Animación de la imagen
             gsap.to(modalImage, {
                 opacity: 1,
                 duration: 0.6,
@@ -279,7 +286,6 @@ if (typeof gsap !== 'undefined') {
                 delay: 0.2
             });
 
-            // Animación del título y descripción
             gsap.to(modalInfo, {
                 opacity: 1,
                 duration: 0.6,
@@ -287,24 +293,24 @@ if (typeof gsap !== 'undefined') {
                 delay: 0.3
             });
 
-            // Animación de los detail items
             gsap.from(detailItems, {
                 scale: 0,
                 opacity: 0,
                 duration: 0.4,
                 ease: 'back.out(2)',
                 stagger: 0.08,
-                delay: 0.5
+                delay: 0.5,
+                clearProps: 'all'
             });
 
-            // Animación de recomendaciones
             if (recommendations) {
                 gsap.from(recommendations, {
                     y: 30,
                     opacity: 0,
                     duration: 0.6,
                     ease: 'power2.out',
-                    delay: 0.7
+                    delay: 0.7,
+                    clearProps: 'all'
                 });
 
                 const recItems = recommendations.querySelectorAll('li');
@@ -314,23 +320,23 @@ if (typeof gsap !== 'undefined') {
                     duration: 0.4,
                     ease: 'power2.out',
                     stagger: 0.08,
-                    delay: 0.9
+                    delay: 0.9,
+                    clearProps: 'all'
                 });
             }
 
-            // Animación de botones de acción
             gsap.from(modalActions, {
                 y: 20,
                 opacity: 0,
                 duration: 0.5,
                 ease: 'power2.out',
                 stagger: 0.1,
-                delay: 1
+                delay: 1,
+                clearProps: 'all'
             });
         }
 
         // ===== SMOOTH ANIMATIONS ON SCROLL =====
-        // Efecto de fade en el hero cuando se hace scroll
         gsap.to('.products-hero-content', {
             scrollTrigger: {
                 trigger: '.products-hero',
