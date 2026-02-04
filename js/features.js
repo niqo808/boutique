@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initWhatsAppButton() {
     // Crear el botón de WhatsApp
     const whatsappBtn = document.createElement('a');
-    whatsappBtn.href = 'https://wa.me/5491161614015?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos';
+    whatsappBtn.href = 'https://wa.me/5491161614015?text=Hola!%20tengo%20una%20consulta.';
     whatsappBtn.target = '_blank';
     whatsappBtn.className = 'whatsapp-float';
     whatsappBtn.innerHTML = `
