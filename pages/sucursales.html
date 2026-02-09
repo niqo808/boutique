@@ -3,582 +3,727 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Visitá nuestras sucursales en Buenos Aires">
-    <title>Sucursales - La Paz</title>
+    <title>Nuestras Sucursales - La Paz</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/logo.png">
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Estilos -->
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/features.css">
     <link rel="stylesheet" href="../css/sucursales.css">
+    
+    <style>
+        /* Estilos adicionales para Leaflet markers customizados */
+        .custom-marker {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .marker-pin {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #B33A3A, #8B2C2C);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 
+                0 4px 16px rgba(179, 58, 58, 0.6),
+                0 0 20px rgba(179, 58, 58, 0.4);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            animation: bounceInMarker 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes bounceInMarker {
+            0% {
+                transform: rotate(-45deg) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(-45deg) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .marker-pin::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 20px;
+            height: 20px;
+            background: #FFFEF8;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+        
+        .marker-pin::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50% 50% 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulseRing 2s infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .marker-pin:hover {
+            transform: rotate(-45deg) scale(1.2);
+            box-shadow: 
+                0 8px 24px rgba(179, 58, 58, 0.8),
+                0 0 32px rgba(179, 58, 58, 0.6);
+        }
+        
+        .marker-pin.active {
+            animation: pulseActive 1.5s infinite;
+        }
+        
+        @keyframes pulseActive {
+            0%, 100% {
+                transform: rotate(-45deg) scale(1);
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.15);
+            }
+        }
+        
+        /* Tooltip personalizado de Leaflet */
+        .leaflet-tooltip-own {
+            background: rgba(45, 45, 45, 0.95);
+            backdrop-filter: blur(10px);
+            color: #C29958;
+            border: 1px solid rgba(194, 153, 88, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leaflet-tooltip-own::before {
+            border-top-color: rgba(45, 45, 45, 0.95);
+        }
+    </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav id="navbar">
+    
+    <!-- INCLUIR TU NAVIGATION AQUÍ -->
+    <nav>
         <div class="nav-container">
-            <a href="../index.html" class="logo title">
-                <div class="brand-icon">
-                    <img src="../images/logo.png" alt="Logo La Paz" class="logo-img">
-                </div>
+            <a href="index.html" class="brand-icon">
+                <img src="images/logo.png" alt="La Paz Logo" class="logo-img">
             </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="sobre-nosotros.html">Nosotros</a></li>
-                <li><a href="productos.html">Productos</a></li>
-                <li><a href="sucursales.html" class="active">Sucursales</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="sistema.html">Acceso al Sistema</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="sucursales.html" class="active">Sucursales</a>
+                <a href="sobre-nosotros.html">Sobre Nosotros</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
     </nav>
-
-    <!-- PAGE HEADER -->
-    <section class="page-header fade-in">
-        <div>
+    
+    <!-- Página de Sucursales -->
+    <div class="sucursales-page">
+        
+        <!-- Header Flotante -->
+        <div class="floating-header">
             <h1>Nuestras Sucursales</h1>
-            <p>Te esperamos en cualquiera de nuestras 6 ubicaciones</p>
+            <p>Encontrá la boutique más cercana</p>
         </div>
-    </section>
-
-    <!-- CONTROLS -->
-    <div class="controls-section">
-        <div class="controls-container">
-            <div class="view-toggle">
-                <button class="view-btn active" data-view="grid">
-                    🏪 Listado de Nuestros Locales
-                </button>
-                <button class="view-btn" data-view="mapa">
-                    🗺️ Ver Mapa
-                </button>
-            </div>
+        
+        <!-- Mapa con Leaflet -->
+        <div id="map-container">
+            <div id="map"></div>
         </div>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <section class="sucursales-section">
-        <!-- INFO BOX -->
-        <div class="info-box fade-in">
-            <h3>💎 Calidad Premium en Cada Ubicación</h3>
-            <p>
-                Todas nuestras sucursales mantienen los mismos estándares de excelencia. 
-                Contamos con cámaras frigoríficas de última generación, personal altamente 
-                capacitado y delivery con cadena de frío garantizada. Encontrá la sucursal 
-                más cercana y disfrutá de la mejor carne premium de Buenos Aires.
-            </p>
-        </div>
-
-        <!-- MAP CONTAINER -->
-        <div class="map-container" id="mapContainer">
-            <iframe 
-                src="https://www.google.com/maps/d/u/0/embed?mid=1Ph89rfaK9OoCW64qH_QQ15wsmXu7img&ehbc=2E312F&noprof=1"
-                allowfullscreen
-                loading="lazy">
-            </iframe>
-        </div>
-
-        <!-- GRID CONTAINER -->
-        <div class="sucursales-grid" id="sucursalesGrid">
+        
+        <!-- Lista de Sucursales (Sidebar) -->
+        <div class="sucursales-list">
+            <div class="list-header">📍 Todas las Sucursales</div>
             
-            <!-- SUCURSAL 1: VILLA ROSA -->
-            <div class="sucursal-card" data-zona="norte">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">1</span>
-                    <h3 class="sucursal-nombre">Villa Rosa</h3>
-                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
-                </div>
-
-                <!-- Galería de Imágenes -->
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/carne4.jpg" alt="Sucursal Villa Rosa" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne6.jpg" alt="Interior sucursal" class="thumb-img">
-                        <img src="../images/carne7.jpg" alt="Productos" class="thumb-img">
-                        <img src="../images/contacto.jpg" alt="Local" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>Esquina Moreno y Sarmiento<br>Villa Rosa, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 9 1161614015</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.app.goo.gl/tcAdt4kTdPhRoSgw9" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345678" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCURSAL 2: VILLA DE MAYO -->
-            <div class="sucursal-card" data-zona="norte">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">2</span>
-                    <h3 class="sucursal-nombre">Villa de Mayo</h3>
-                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
-                </div>
-
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/carne7.jpg" alt="Sucursal Villa de Mayo" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne4.jpg" alt="Interior" class="thumb-img">
-                        <img src="../images/carne6.jpg" alt="Productos" class="thumb-img">
-                        <img src="../images/contacto.jpg" alt="Exterior" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>Eva Perón 4505<br>Villa de Mayo, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 11 1234-5679</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.google.com/?q=Eva+Peron+4505+Villa+de+Mayo+Buenos+Aires" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345679" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCURSAL 3: VILLA ROSA II -->
-            <div class="sucursal-card" data-zona="norte">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">3</span>
-                    <h3 class="sucursal-nombre">Villa Rosa II</h3>
-                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
-                </div>
-
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/carne6.jpg" alt="Sucursal Villa Rosa II" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne7.jpg" alt="Vista 1" class="thumb-img">
-                        <img src="../images/carne4.jpg" alt="Vista 2" class="thumb-img">
-                        <img src="../images/contacto.jpg" alt="Vista 3" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>Esquina Almirante Brown y Descalzi<br>Villa Rosa, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 8:30 - 20:30<br>Sáb: 9:00 - 16:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 11 1234-5680</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.google.com/?q=Almirante+Brown+y+Descalzi+Villa+Rosa+Buenos+Aires" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345680" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCURSAL 3: ADOLFO SOURDEAUX -->
-            <div class="sucursal-card" data-zona="oeste">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">3</span>
-                    <h3 class="sucursal-nombre">Adolfo Sourdeaux</h3>
-                    <p class="sucursal-zona">Zona Oeste • Buenos Aires</p>
-                </div>
-
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/contacto.jpg" alt="Sucursal Adolfo Sourdeaux" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne4.jpg" alt="Interior" class="thumb-img">
-                        <img src="../images/carne6.jpg" alt="Mostrador" class="thumb-img">
-                        <img src="../images/carne7.jpg" alt="Productos" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>Derqui 1242<br>Adolfo Sourdeaux, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 14:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 11 1234-5681</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.google.com/?q=Derqui+1242+Adolfo+Sourdeaux+Buenos+Aires" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345681" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCURSAL 5: MATHEU -->
-            <div class="sucursal-card" data-zona="norte">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">5</span>
-                    <h3 class="sucursal-nombre">Matheu</h3>
-                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
-                </div>
-
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/carne4.jpg" alt="Sucursal Matheu" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne6.jpg" alt="Local" class="thumb-img">
-                        <img src="../images/carne7.jpg" alt="Interior" class="thumb-img">
-                        <img src="../images/contacto.jpg" alt="Fachada" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>San Martín 262<br>Matheu, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 8:00 - 20:00<br>Sáb: 8:00 - 15:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 11 1234-5682</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.google.com/?q=San+Martin+262+Matheu+Buenos+Aires" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345682" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SUCURSAL 6: DON TORCUATO -->
-            <div class="sucursal-card" data-zona="norte">
-                <div class="sucursal-header">
-                    <span class="sucursal-numero">6</span>
-                    <h3 class="sucursal-nombre">Don Torcuato</h3>
-                    <p class="sucursal-zona">Zona Norte • Buenos Aires</p>
-                </div>
-
-                <div class="sucursal-gallery">
-                    <div class="gallery-main">
-                        <img src="../images/carne7.jpg" alt="Sucursal Don Torcuato" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span>📸 Ver más fotos</span>
-                        </div>
-                    </div>
-                    <div class="gallery-thumbs">
-                        <img src="../images/carne4.jpg" alt="Vista frontal" class="thumb-img">
-                        <img src="../images/contacto.jpg" alt="Interior" class="thumb-img">
-                        <img src="../images/carne6.jpg" alt="Productos" class="thumb-img">
-                    </div>
-                </div>
-
-                <div class="sucursal-body">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <div class="info-content">
-                                <h4>Dirección</h4>
-                                <p>Triunvirato 1596, esquina Chile<br>Don Torcuato, Buenos Aires</p>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">🕐</div>
-                            <div class="info-content">
-                                <h4>Horarios</h4>
-                                <p>Lun - Vie: 9:00 - 20:00<br>Sáb: 9:00 - 15:00</p>
-                                <span class="horario-badge">🟢 Verificando...</span>
-                            </div>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📞</div>
-                            <div class="info-content">
-                                <h4>Teléfono</h4>
-                                <p>+54 11 1234-5683</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="servicios-list">
-                        <span class="servicio-tag">🚚 Delivery</span>
-                        <span class="servicio-tag">❄️ Cadena Fría</span>
-                        <span class="servicio-tag">💳 Todas las Tarjetas</span>
-                    </div>
-
-                    <div class="sucursal-actions">
-                        <a href="https://maps.google.com/?q=Triunvirato+1596+Don+Torcuato+Buenos+Aires" 
-                           target="_blank" 
-                           class="btn-sucursal btn-direcciones">
-                            🗺️ Cómo llegar
-                        </a>
-                        <a href="https://wa.me/5491112345683" 
-                           target="_blank" 
-                           class="btn-sucursal btn-whatsapp">
-                            💬 WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section logo-container">
-                <img src="../images/logo.png" alt="Logo La Paz" class="logo">
-                <span class="logo-text">Excelencia en cada corte desde 1994</span>
+            <div class="sucursal-item" data-sucursal="1">
+                <h3>Sucursal Centro</h3>
+                <p>Microcentro</p>
             </div>
             
-            <div class="footer-section">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="sobre-nosotros.html">Nosotros</a></li>
-                    <li><a href="productos.html">Productos</a></li>
-                    <li><a href="sucursales.html">Sucursales</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="sistema.html">Acceso al Sistema</a></li>
-                </ul>
+            <div class="sucursal-item" data-sucursal="2">
+                <h3>Sucursal Palermo</h3>
+                <p>Zona Norte</p>
             </div>
             
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <p>📍 Av. Principal 1234, Buenos Aires</p>
-                <p>📞 +54 11 1234-5678</p>
-                <p>✉️ info@boutiquelapaz.com</p>
+            <div class="sucursal-item" data-sucursal="3">
+                <h3>Sucursal Belgrano</h3>
+                <p>Zona Norte</p>
             </div>
             
-            <div class="footer-section">
-                <h4>Seguínos</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/lapaz_carnepremium?igsh=MXM2M2xyMmZnc20wbw==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@lapaz_carnepremium?_r=1&_t=ZM-92ubbZmFJr1" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/5491161614015" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
+            <div class="sucursal-item" data-sucursal="4">
+                <h3>Sucursal Caballito</h3>
+                <p>Zona Oeste</p>
+            </div>
+            
+            <div class="sucursal-item" data-sucursal="5">
+                <h3>Sucursal Flores</h3>
+                <p>Zona Sur</p>
+            </div>
+            
+            <div class="sucursal-item" data-sucursal="6">
+                <h3>Sucursal Núñez</h3>
+                <p>Zona Norte</p>
             </div>
         </div>
         
-        <div class="footer-bottom">
-            <p>&copy; 2025 La Paz. Todos los derechos reservados.</p>
+        <!-- Card Flotante -->
+        <div class="sucursal-card-floating" id="floating-card">
+            <!-- Contenido generado dinámicamente -->
         </div>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+    </div>
     
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
     
-    <script src="../js/main.js"></script>
-    <script src="../js/features.js"></script>
-    <script src="../js/sucursales.js"></script>
-    <script src="../js/gsap-sucursales.js"></script>
+    <!-- JavaScript Principal -->
+    <script>
+        // ============================================
+        // DATOS DE LAS 6 SUCURSALES
+        // ============================================
+        const sucursales = [
+            {
+                id: 1,
+                nombre: "Sucursal Centro",
+                zona: "Microcentro",
+                lat: -34.6037,
+                lng: -58.3816,
+                direccion: "Av. Corrientes 1234, CABA",
+                telefono: "+54 11 1234-5678",
+                email: "centro@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-14:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "20:00" },
+                    martes: { inicio: "09:00", fin: "20:00" },
+                    miercoles: { inicio: "09:00", fin: "20:00" },
+                    jueves: { inicio: "09:00", fin: "20:00" },
+                    viernes: { inicio: "09:00", fin: "20:00" },
+                    sabado: { inicio: "09:00", fin: "14:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta minorista", "Delivery", "Parking"],
+                imagenes: [
+                    "images/carne.jpg",
+                    "images/carne4.jpg",
+                    "images/carne7.jpg"
+                ]
+            },
+            {
+                id: 2,
+                nombre: "Sucursal Palermo",
+                zona: "Zona Norte",
+                lat: -34.5885,
+                lng: -58.4194,
+                direccion: "Av. Santa Fe 4567, CABA",
+                telefono: "+54 11 2345-6789",
+                email: "palermo@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-18:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "20:00" },
+                    martes: { inicio: "09:00", fin: "20:00" },
+                    miercoles: { inicio: "09:00", fin: "20:00" },
+                    jueves: { inicio: "09:00", fin: "20:00" },
+                    viernes: { inicio: "09:00", fin: "20:00" },
+                    sabado: { inicio: "09:00", fin: "18:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta mayorista", "Delivery", "Parking", "Wi-Fi"],
+                imagenes: [
+                    "images/lomo.jpg",
+                    "images/carne.jpg",
+                    "images/carne4.jpg"
+                ]
+            },
+            {
+                id: 3,
+                nombre: "Sucursal Belgrano",
+                zona: "Zona Norte",
+                lat: -34.5628,
+                lng: -58.4571,
+                direccion: "Av. Cabildo 2890, CABA",
+                telefono: "+54 11 3456-7890",
+                email: "belgrano@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-19:30 | Sáb: 9:00-14:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "19:30" },
+                    martes: { inicio: "09:00", fin: "19:30" },
+                    miercoles: { inicio: "09:00", fin: "19:30" },
+                    jueves: { inicio: "09:00", fin: "19:30" },
+                    viernes: { inicio: "09:00", fin: "19:30" },
+                    sabado: { inicio: "09:00", fin: "14:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta minorista", "Parking"],
+                imagenes: [
+                    "images/bife_ancho.jpg",
+                    "images/lomo.jpg",
+                    "images/carne7.jpg"
+                ]
+            },
+            {
+                id: 4,
+                nombre: "Sucursal Caballito",
+                zona: "Zona Oeste",
+                lat: -34.6186,
+                lng: -58.4407,
+                direccion: "Av. Rivadavia 5678, CABA",
+                telefono: "+54 11 4567-8901",
+                email: "caballito@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-16:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "20:00" },
+                    martes: { inicio: "09:00", fin: "20:00" },
+                    miercoles: { inicio: "09:00", fin: "20:00" },
+                    jueves: { inicio: "09:00", fin: "20:00" },
+                    viernes: { inicio: "09:00", fin: "20:00" },
+                    sabado: { inicio: "09:00", fin: "16:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta minorista", "Delivery", "Wi-Fi"],
+                imagenes: [
+                    "images/carne4.jpg",
+                    "images/bife_angosto.jpg",
+                    "images/carne.jpg"
+                ]
+            },
+            {
+                id: 5,
+                nombre: "Sucursal Flores",
+                zona: "Zona Sur",
+                lat: -34.6296,
+                lng: -58.4657,
+                direccion: "Av. Directorio 3456, CABA",
+                telefono: "+54 11 5678-9012",
+                email: "flores@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-19:00 | Sáb: 9:00-13:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "19:00" },
+                    martes: { inicio: "09:00", fin: "19:00" },
+                    miercoles: { inicio: "09:00", fin: "19:00" },
+                    jueves: { inicio: "09:00", fin: "19:00" },
+                    viernes: { inicio: "09:00", fin: "19:00" },
+                    sabado: { inicio: "09:00", fin: "13:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta minorista", "Delivery"],
+                imagenes: [
+                    "images/carne7.jpg",
+                    "images/carne4.jpg",
+                    "images/lomo.jpg"
+                ]
+            },
+            {
+                id: 6,
+                nombre: "Sucursal Núñez",
+                zona: "Zona Norte",
+                lat: -34.5435,
+                lng: -58.4520,
+                direccion: "Av. Cabildo 4123, CABA",
+                telefono: "+54 11 6789-0123",
+                email: "nunez@lapaz.com.ar",
+                horario: "Lun-Vie: 9:00-20:30 | Sáb: 9:00-17:00",
+                horarioDetalle: {
+                    lunes: { inicio: "09:00", fin: "20:30" },
+                    martes: { inicio: "09:00", fin: "20:30" },
+                    miercoles: { inicio: "09:00", fin: "20:30" },
+                    jueves: { inicio: "09:00", fin: "20:30" },
+                    viernes: { inicio: "09:00", fin: "20:30" },
+                    sabado: { inicio: "09:00", fin: "17:00" },
+                    domingo: { inicio: null, fin: null }
+                },
+                servicios: ["Venta minorista", "Venta mayorista", "Parking", "Wi-Fi"],
+                imagenes: [
+                    "images/bife_angosto.jpg",
+                    "images/carne.jpg",
+                    "images/bife_ancho.jpg"
+                ]
+            }
+        ];
+        
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
+        let map;
+        let markers = [];
+        let currentImageIndex = {};
+        
+        // ============================================
+        // INICIALIZAR MAPA CON LEAFLET
+        // ============================================
+        function initMap() {
+            // Centro del mapa en Buenos Aires
+            const center = [-34.6037, -58.3816];
+            
+            // Crear mapa
+            map = L.map('map', {
+                center: center,
+                zoom: 12,
+                zoomControl: true,
+                attributionControl: true
+            });
+            
+            // Añadir capa de OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Crear marcadores para cada sucursal
+            sucursales.forEach((sucursal, index) => {
+                // Crear icono personalizado
+                const customIcon = L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div class="marker-pin" data-sucursal-id="${sucursal.id}"></div>`,
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 50],
+                    popupAnchor: [0, -50]
+                });
+                
+                // Crear marcador
+                const marker = L.marker([sucursal.lat, sucursal.lng], {
+                    icon: customIcon,
+                    sucursalId: sucursal.id
+                }).addTo(map);
+                
+                // Tooltip al hover
+                marker.bindTooltip(sucursal.nombre, {
+                    permanent: false,
+                    direction: 'top',
+                    className: 'leaflet-tooltip-own',
+                    offset: [0, -50]
+                });
+                
+                // Click en marcador
+                marker.on('click', function() {
+                    showSucursalCard(sucursal);
+                });
+                
+                // Guardar referencia
+                markers.push({ marker, sucursal });
+                
+                // Pequeño delay en la animación de cada pin
+                setTimeout(() => {
+                    const pinElement = document.querySelector(`.marker-pin[data-sucursal-id="${sucursal.id}"]`);
+                    if (pinElement) {
+                        pinElement.style.animationDelay = `${index * 0.1}s`;
+                    }
+                }, 100);
+            });
+        }
+        
+        // ============================================
+        // MOSTRAR CARD DE SUCURSAL
+        // ============================================
+        function showSucursalCard(sucursal) {
+            const card = document.getElementById('floating-card');
+            
+            // Resetear índice de imagen
+            currentImageIndex[sucursal.id] = 0;
+            
+            // Generar HTML del card
+            card.innerHTML = `
+                <div class="card-header">
+                    <button class="close-btn" onclick="closeCard()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <div class="sucursal-numero-badge">${sucursal.id}</div>
+                    
+                    <h2>${sucursal.nombre}</h2>
+                    <p class="zona">${sucursal.zona}</p>
+                </div>
+                
+                <div class="gallery-swiper">
+                    <div class="gallery-track" id="gallery-track-${sucursal.id}">
+                        ${sucursal.imagenes.map(img => `
+                            <div class="gallery-slide">
+                                <img src="${img}" alt="${sucursal.nombre}" onerror="this.src='images/carne.jpg'">
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="gallery-arrow prev" onclick="prevImage(${sucursal.id})">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-arrow next" onclick="nextImage(${sucursal.id})">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="gallery-controls">
+                        ${sucursal.imagenes.map((img, idx) => `
+                            <div class="gallery-dot ${idx === 0 ? 'active' : ''}" 
+                                 onclick="goToImage(${sucursal.id}, ${idx})"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Dirección</h4>
+                            <p>${sucursal.direccion}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Teléfono</h4>
+                            <p>${sucursal.telefono}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Horario</h4>
+                            <p>${sucursal.horario}</p>
+                            ${getHorarioBadge(sucursal)}
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <p>${sucursal.email}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="servicios-list">
+                        ${sucursal.servicios.map(servicio => `
+                            <span class="servicio-tag">${servicio}</span>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${sucursal.lat},${sucursal.lng}" 
+                       target="_blank" class="btn-action btn-direcciones">
+                        <span>
+                            <i class="fas fa-directions"></i>
+                            Cómo llegar
+                        </span>
+                    </a>
+                    
+                    <a href="https://wa.me/${sucursal.telefono.replace(/[^0-9]/g, '')}" 
+                       target="_blank" class="btn-action btn-whatsapp">
+                        <span>
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </span>
+                    </a>
+                </div>
+            `;
+            
+            // Mostrar card con animación
+            setTimeout(() => {
+                card.classList.add('show');
+            }, 100);
+            
+            // Centrar mapa en la sucursal con animación suave
+            map.flyTo([sucursal.lat, sucursal.lng], 15, {
+                duration: 1.5,
+                easeLinearity: 0.25
+            });
+            
+            // Activar pin
+            document.querySelectorAll('.marker-pin').forEach(pin => {
+                pin.classList.remove('active');
+            });
+            const activePin = document.querySelector(`.marker-pin[data-sucursal-id="${sucursal.id}"]`);
+            if (activePin) {
+                activePin.classList.add('active');
+            }
+            
+            // Activar item de lista
+            document.querySelectorAll('.sucursal-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const activeItem = document.querySelector(`.sucursal-item[data-sucursal="${sucursal.id}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+        
+        // ============================================
+        // CERRAR CARD
+        // ============================================
+        function closeCard() {
+            const card = document.getElementById('floating-card');
+            card.classList.remove('show');
+            
+            // Volver al zoom original
+            map.flyTo([-34.6037, -58.3816], 12, {
+                duration: 1.5,
+                easeLinearity: 0.25
+            });
+            
+            // Desactivar todos los pins
+            document.querySelectorAll('.marker-pin').forEach(pin => {
+                pin.classList.remove('active');
+            });
+            
+            // Desactivar items de lista
+            document.querySelectorAll('.sucursal-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+        
+        // ============================================
+        // GALERÍA SWIPEABLE
+        // ============================================
+        function nextImage(sucursalId) {
+            const sucursal = sucursales.find(s => s.id === sucursalId);
+            if (!currentImageIndex[sucursalId]) currentImageIndex[sucursalId] = 0;
+            
+            currentImageIndex[sucursalId] = (currentImageIndex[sucursalId] + 1) % sucursal.imagenes.length;
+            updateGallery(sucursalId);
+        }
+        
+        function prevImage(sucursalId) {
+            const sucursal = sucursales.find(s => s.id === sucursalId);
+            if (!currentImageIndex[sucursalId]) currentImageIndex[sucursalId] = 0;
+            
+            currentImageIndex[sucursalId] = 
+                (currentImageIndex[sucursalId] - 1 + sucursal.imagenes.length) % sucursal.imagenes.length;
+            updateGallery(sucursalId);
+        }
+        
+        function goToImage(sucursalId, index) {
+            currentImageIndex[sucursalId] = index;
+            updateGallery(sucursalId);
+        }
+        
+        function updateGallery(sucursalId) {
+            const track = document.getElementById(`gallery-track-${sucursalId}`);
+            const index = currentImageIndex[sucursalId] || 0;
+            
+            if (track) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+                
+                // Actualizar dots
+                const dots = track.parentElement.querySelectorAll('.gallery-dot');
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === index);
+                });
+            }
+        }
+        
+        // ============================================
+        // VERIFICAR HORARIO
+        // ============================================
+        function getHorarioBadge(sucursal) {
+            const ahora = new Date();
+            const diaSemana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'][ahora.getDay()];
+            const horaActual = ahora.getHours() * 60 + ahora.getMinutes();
+            
+            const horario = sucursal.horarioDetalle[diaSemana];
+            
+            if (!horario.inicio || !horario.fin) {
+                return '<span class="horario-badge cerrado"><i class="fas fa-circle"></i> CERRADO</span>';
+            }
+            
+            const [horaInicio, minInicio] = horario.inicio.split(':').map(Number);
+            const [horaFin, minFin] = horario.fin.split(':').map(Number);
+            
+            const minutosInicio = horaInicio * 60 + minInicio;
+            const minutosFin = horaFin * 60 + minFin;
+            
+            if (horaActual >= minutosInicio && horaActual < minutosFin) {
+                return '<span class="horario-badge"><i class="fas fa-circle"></i> ABIERTO AHORA</span>';
+            } else {
+                return '<span class="horario-badge cerrado"><i class="fas fa-circle"></i> CERRADO</span>';
+            }
+        }
+        
+        // ============================================
+        // INICIALIZACIÓN
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar mapa
+            initMap();
+            
+            // Click en items de lista
+            document.querySelectorAll('.sucursal-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const sucursalId = parseInt(item.dataset.sucursal);
+                    const sucursal = sucursales.find(s => s.id === sucursalId);
+                    if (sucursal) {
+                        showSucursalCard(sucursal);
+                    }
+                });
+            });
+            
+            // Cerrar card con ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeCard();
+                }
+            });
+        });
+        
+        // ============================================
+        // MENÚ MOBILE
+        // ============================================
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
     
 </body>
 </html>
