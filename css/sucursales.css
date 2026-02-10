@@ -37,7 +37,7 @@
     top: 3rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 200;
+    z-index: 1200;
     text-align: center;
     animation: fadeInDown 1s ease-out;
 }
@@ -70,6 +70,16 @@
     color: var(--gold-light);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     letter-spacing: 1px;
+}
+
+/* Fondo ligero para mejorar contraste sobre el mapa */
+.floating-header {
+    padding: 0.7rem 1.2rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    border-radius: 12px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
 }
 
 /* === MAPA FULLSCREEN === */
@@ -191,7 +201,7 @@
     box-shadow: 
         0 24px 64px rgba(0, 0, 0, 0.3),
         0 0 0 1px rgba(255, 255, 255, 0.5);
-    z-index: 150;
+    z-index: 1200;
     overflow: hidden;
     transform: translateY(120%);
     opacity: 0;
@@ -625,11 +635,59 @@
         0 24px 64px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(255, 255, 255, 0.5);
     padding: 1.5rem;
-    z-index: 100;
+    z-index: 1100;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--gold) transparent;
     animation: slideInRight 0.8s ease-out;
+}
+
+/* Toggle button for sidebar */
+.sucursal-toggle-btn {
+    position: absolute;
+    top: 0.6rem;
+    left: -44px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.24s ease;
+    z-index: 1300;
+}
+
+.sucursal-toggle-btn:hover { transform: scale(1.05); }
+
+.sucursales-list.collapsed {
+    transform: translateX(360px);
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+/* Improve centering and spacing for list items */
+.sucursales-list .list-header { text-align: center; }
+.sucursales-list .sucursal-item { display: flex; flex-direction: column; align-items: flex-start; }
+.sucursales-list .sucursal-item h3 { width: 100%; text-align: left; }
+.sucursales-list .sucursal-item p { width: 100%; text-align: left; margin: 0; }
+
+/* === MARKER (logo) STYLES === */
+.logo-marker {
+    width: 48px !important;
+    height: 48px !important;
+    transform-origin: center bottom;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+}
+
+.logo-marker.active {
+    transform: scale(1.18) translateY(-6px);
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.45)) saturate(1.1);
 }
 
 @keyframes slideInRight {

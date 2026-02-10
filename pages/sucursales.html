@@ -134,20 +134,22 @@
 </head>
 <body>
     
-    <!-- INCLUIR TU NAVIGATION AQUÍ -->
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="brand-icon">
-                <img src="images/logo.png" alt="La Paz Logo" class="logo-img">
+            <a href="../index.html" class="logo title">
+                <div class="brand-icon">
+                    <img src="../images/logo.png" alt="Logo La Paz" class="logo-img">
+                </div>
             </a>
-            <div class="nav-links">
-                <a href="index.html">Inicio</a>
-                <a href="productos.html">Productos</a>
-                <a href="sucursales.html" class="active">Sucursales</a>
-                <a href="sobre-nosotros.html">Sobre Nosotros</a>
-                <a href="contacto.html">Contacto</a>
-            </div>
-            <div class="menu-toggle">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="sobre-nosotros.html" class="active">Nosotros</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="sucursales.html">Sucursales</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="sistema.html">Acceso al Sistema</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -161,7 +163,7 @@
         <!-- Header Flotante -->
         <div class="floating-header">
             <h1>Nuestras Sucursales</h1>
-            <p>Encontrá la boutique más cercana</p>
+            <p>Contamos con 6 sucursales — encontrá la boutique más cercana</p>
         </div>
         
         <!-- Mapa con Leaflet -->
@@ -172,35 +174,40 @@
         <!-- Lista de Sucursales (Sidebar) -->
         <div class="sucursales-list">
             <div class="list-header">📍 Todas las Sucursales</div>
+
+            <button id="sucursalToggle" class="sucursal-toggle-btn" aria-expanded="true" aria-controls="sucursales-list">
+                <i class="fas fa-chevron-left"></i>
+                <span class="sr-only">Mostrar/Ocultar sucursales</span>
+            </button>
             
             <div class="sucursal-item" data-sucursal="1">
-                <h3>Sucursal Centro</h3>
-                <p>Microcentro</p>
+                <h3>Sucursal Casa Central</h3>
+                <p>VILLA ROSA — Esquina Moreno y Sarmiento</p>
             </div>
-            
+
             <div class="sucursal-item" data-sucursal="2">
-                <h3>Sucursal Palermo</h3>
-                <p>Zona Norte</p>
+                <h3>Sucursal II</h3>
+                <p>VILLA DE MAYO — Eva Perón 4505</p>
             </div>
-            
+
             <div class="sucursal-item" data-sucursal="3">
-                <h3>Sucursal Belgrano</h3>
-                <p>Zona Norte</p>
+                <h3>Sucursal III</h3>
+                <p>VILLA ROSA — Esquina Almirante Brown y Descalzi</p>
             </div>
-            
+
             <div class="sucursal-item" data-sucursal="4">
-                <h3>Sucursal Caballito</h3>
-                <p>Zona Oeste</p>
+                <h3>Sucursal IV</h3>
+                <p>ADOLFO SOURDEAUX — Derqui 1242</p>
             </div>
-            
+
             <div class="sucursal-item" data-sucursal="5">
-                <h3>Sucursal Flores</h3>
-                <p>Zona Sur</p>
+                <h3>Sucursal V</h3>
+                <p>MATHEU — San Martin 262</p>
             </div>
-            
+
             <div class="sucursal-item" data-sucursal="6">
-                <h3>Sucursal Núñez</h3>
-                <p>Zona Norte</p>
+                <h3>Sucursal VI</h3>
+                <p>DON TORCUATO — Triunvirato 1596 (esquina Chile)</p>
             </div>
         </div>
         
@@ -222,162 +229,12 @@
         // DATOS DE LAS 6 SUCURSALES
         // ============================================
         const sucursales = [
-            {
-                id: 1,
-                nombre: "Sucursal Centro",
-                zona: "Microcentro",
-                lat: -34.6037,
-                lng: -58.3816,
-                direccion: "Av. Corrientes 1234, CABA",
-                telefono: "+54 11 1234-5678",
-                email: "centro@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-14:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "20:00" },
-                    martes: { inicio: "09:00", fin: "20:00" },
-                    miercoles: { inicio: "09:00", fin: "20:00" },
-                    jueves: { inicio: "09:00", fin: "20:00" },
-                    viernes: { inicio: "09:00", fin: "20:00" },
-                    sabado: { inicio: "09:00", fin: "14:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta minorista", "Delivery", "Parking"],
-                imagenes: [
-                    "images/carne.jpg",
-                    "images/carne4.jpg",
-                    "images/carne7.jpg"
-                ]
-            },
-            {
-                id: 2,
-                nombre: "Sucursal Palermo",
-                zona: "Zona Norte",
-                lat: -34.5885,
-                lng: -58.4194,
-                direccion: "Av. Santa Fe 4567, CABA",
-                telefono: "+54 11 2345-6789",
-                email: "palermo@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-18:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "20:00" },
-                    martes: { inicio: "09:00", fin: "20:00" },
-                    miercoles: { inicio: "09:00", fin: "20:00" },
-                    jueves: { inicio: "09:00", fin: "20:00" },
-                    viernes: { inicio: "09:00", fin: "20:00" },
-                    sabado: { inicio: "09:00", fin: "18:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta mayorista", "Delivery", "Parking", "Wi-Fi"],
-                imagenes: [
-                    "images/lomo.jpg",
-                    "images/carne.jpg",
-                    "images/carne4.jpg"
-                ]
-            },
-            {
-                id: 3,
-                nombre: "Sucursal Belgrano",
-                zona: "Zona Norte",
-                lat: -34.5628,
-                lng: -58.4571,
-                direccion: "Av. Cabildo 2890, CABA",
-                telefono: "+54 11 3456-7890",
-                email: "belgrano@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-19:30 | Sáb: 9:00-14:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "19:30" },
-                    martes: { inicio: "09:00", fin: "19:30" },
-                    miercoles: { inicio: "09:00", fin: "19:30" },
-                    jueves: { inicio: "09:00", fin: "19:30" },
-                    viernes: { inicio: "09:00", fin: "19:30" },
-                    sabado: { inicio: "09:00", fin: "14:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta minorista", "Parking"],
-                imagenes: [
-                    "images/bife_ancho.jpg",
-                    "images/lomo.jpg",
-                    "images/carne7.jpg"
-                ]
-            },
-            {
-                id: 4,
-                nombre: "Sucursal Caballito",
-                zona: "Zona Oeste",
-                lat: -34.6186,
-                lng: -58.4407,
-                direccion: "Av. Rivadavia 5678, CABA",
-                telefono: "+54 11 4567-8901",
-                email: "caballito@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-20:00 | Sáb: 9:00-16:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "20:00" },
-                    martes: { inicio: "09:00", fin: "20:00" },
-                    miercoles: { inicio: "09:00", fin: "20:00" },
-                    jueves: { inicio: "09:00", fin: "20:00" },
-                    viernes: { inicio: "09:00", fin: "20:00" },
-                    sabado: { inicio: "09:00", fin: "16:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta minorista", "Delivery", "Wi-Fi"],
-                imagenes: [
-                    "images/carne4.jpg",
-                    "images/bife_angosto.jpg",
-                    "images/carne.jpg"
-                ]
-            },
-            {
-                id: 5,
-                nombre: "Sucursal Flores",
-                zona: "Zona Sur",
-                lat: -34.6296,
-                lng: -58.4657,
-                direccion: "Av. Directorio 3456, CABA",
-                telefono: "+54 11 5678-9012",
-                email: "flores@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-19:00 | Sáb: 9:00-13:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "19:00" },
-                    martes: { inicio: "09:00", fin: "19:00" },
-                    miercoles: { inicio: "09:00", fin: "19:00" },
-                    jueves: { inicio: "09:00", fin: "19:00" },
-                    viernes: { inicio: "09:00", fin: "19:00" },
-                    sabado: { inicio: "09:00", fin: "13:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta minorista", "Delivery"],
-                imagenes: [
-                    "images/carne7.jpg",
-                    "images/carne4.jpg",
-                    "images/lomo.jpg"
-                ]
-            },
-            {
-                id: 6,
-                nombre: "Sucursal Núñez",
-                zona: "Zona Norte",
-                lat: -34.5435,
-                lng: -58.4520,
-                direccion: "Av. Cabildo 4123, CABA",
-                telefono: "+54 11 6789-0123",
-                email: "nunez@lapaz.com.ar",
-                horario: "Lun-Vie: 9:00-20:30 | Sáb: 9:00-17:00",
-                horarioDetalle: {
-                    lunes: { inicio: "09:00", fin: "20:30" },
-                    martes: { inicio: "09:00", fin: "20:30" },
-                    miercoles: { inicio: "09:00", fin: "20:30" },
-                    jueves: { inicio: "09:00", fin: "20:30" },
-                    viernes: { inicio: "09:00", fin: "20:30" },
-                    sabado: { inicio: "09:00", fin: "17:00" },
-                    domingo: { inicio: null, fin: null }
-                },
-                servicios: ["Venta minorista", "Venta mayorista", "Parking", "Wi-Fi"],
-                imagenes: [
-                    "images/bife_angosto.jpg",
-                    "images/carne.jpg",
-                    "images/bife_ancho.jpg"
-                ]
-            }
+            { id: 1, nombre: "Sucursal Casa Central", zona: "VILLA ROSA", lat: -34.4187, lng: -58.87039, direccion: "Esquina Moreno y Sarmiento, Villa Rosa", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/carne.jpg","images/carne4.jpg","images/carne7.jpg"] },
+            { id: 2, nombre: "Sucursal II", zona: "VILLA DE MAYO", lat: -34.49735, lng: -58.67554, direccion: "Eva Perón 4505, Villa de Mayo", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/lomo.jpg","images/carne.jpg","images/carne4.jpg"] },
+            { id: 3, nombre: "Sucursal III", zona: "VILLA ROSA", lat: -34.41179, lng: -58.87499, direccion: "Esquina Almirante Brown y Descalzi, Villa Rosa", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/bife_ancho.jpg","images/lomo.jpg","images/carne7.jpg"] },
+            { id: 4, nombre: "Sucursal IV", zona: "ADOLFO SOURDEAUX", lat: -34.50318, lng: -58.6671, direccion: "Derqui 1242, Adolfo Sourdeaux", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/carne4.jpg","images/bife_angosto.jpg","images/carne.jpg"] },
+            { id: 5, nombre: "Sucursal V", zona: "MATHEU", lat: -34.38311, lng: -58.83012, direccion: "San Martin 262, Matheu", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/carne7.jpg","images/carne4.jpg","images/lomo.jpg"] },
+            { id: 6, nombre: "Sucursal VI", zona: "DON TORCUATO", lat: -34.48687, lng: -58.614, direccion: "Triunvirato 1596, esquina Chile, Don Torcuato", telefono: "+54 9 11 6161-4015", email: "info@lapaz.com.ar", horario: "Lun-Vie: 08:00-13:00 / 16:30-21:00 | Sáb: 08:00-21:00 | Dom: 08:00-13:00", horarioDetalle: { lunes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], martes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], miercoles: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], jueves: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], viernes: [{ inicio: "08:00", fin: "13:00" }, { inicio: "16:30", fin: "21:00" }], sabado: [{ inicio: "08:00", fin: "21:00" }], domingo: [{ inicio: "08:00", fin: "13:00" }] }, servicios: ["Venta minorista", "Delivery"], imagenes: ["images/bife_angosto.jpg","images/carne.jpg","images/bife_ancho.jpg"] }
         ];
         
         // ============================================
@@ -391,13 +248,13 @@
         // INICIALIZAR MAPA CON LEAFLET
         // ============================================
         function initMap() {
-            // Centro del mapa en Buenos Aires
-            const center = [-34.6037, -58.3816];
+            // Centro del mapa — zona de sucursales (promedio de coordenadas)
+            const center = [-34.45, -58.76];
             
             // Crear mapa
             map = L.map('map', {
                 center: center,
-                zoom: 12,
+                zoom: 11,
                 zoomControl: true,
                 attributionControl: true
             });
@@ -410,44 +267,48 @@
             
             // Crear marcadores para cada sucursal
             sucursales.forEach((sucursal, index) => {
-                // Crear icono personalizado
-                const customIcon = L.divIcon({
-                    className: 'custom-marker',
-                    html: `<div class="marker-pin" data-sucursal-id="${sucursal.id}"></div>`,
-                    iconSize: [50, 50],
-                    iconAnchor: [25, 50],
-                    popupAnchor: [0, -50]
+                // Icono: preferimos logo.svg (fallback si no existe puede ser logo.png)
+                const logoUrl = '../images/logo.svg';
+                const logoIcon = L.icon({
+                    iconUrl: logoUrl,
+                    iconSize: [48, 48],
+                    iconAnchor: [24, 48],
+                    popupAnchor: [0, -48],
+                    className: 'logo-marker'
                 });
-                
-                // Crear marcador
+
+                // Crear marcador con icono de logo
                 const marker = L.marker([sucursal.lat, sucursal.lng], {
-                    icon: customIcon,
+                    icon: logoIcon,
                     sucursalId: sucursal.id
                 }).addTo(map);
-                
+
                 // Tooltip al hover
                 marker.bindTooltip(sucursal.nombre, {
                     permanent: false,
                     direction: 'top',
                     className: 'leaflet-tooltip-own',
-                    offset: [0, -50]
+                    offset: [0, -48]
                 });
-                
+
                 // Click en marcador
                 marker.on('click', function() {
                     showSucursalCard(sucursal);
                 });
-                
+
                 // Guardar referencia
                 markers.push({ marker, sucursal });
-                
-                // Pequeño delay en la animación de cada pin
+
+                // Añadir dataset y pequeños ajustes al elemento del icono cuando esté disponible
                 setTimeout(() => {
-                    const pinElement = document.querySelector(`.marker-pin[data-sucursal-id="${sucursal.id}"]`);
-                    if (pinElement) {
-                        pinElement.style.animationDelay = `${index * 0.1}s`;
+                    const el = marker.getElement();
+                    if (el) {
+                        el.dataset.sucursalId = sucursal.id;
+                        el.style.transition = 'transform 0.25s ease, filter 0.25s ease';
+                        el.style.transformOrigin = 'center bottom';
+                        el.style.animationDelay = `${index * 0.08}s`;
                     }
-                }, 100);
+                }, 50);
             });
         }
         
@@ -555,8 +416,8 @@
                         </span>
                     </a>
                     
-                    <a href="https://wa.me/${sucursal.telefono.replace(/[^0-9]/g, '')}" 
-                       target="_blank" class="btn-action btn-whatsapp">
+                          <a href="https://wa.me/5491161614015" 
+                              target="_blank" class="btn-action btn-whatsapp">
                         <span>
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
@@ -577,10 +438,10 @@
             });
             
             // Activar pin
-            document.querySelectorAll('.marker-pin').forEach(pin => {
+            document.querySelectorAll('.logo-marker').forEach(pin => {
                 pin.classList.remove('active');
             });
-            const activePin = document.querySelector(`.marker-pin[data-sucursal-id="${sucursal.id}"]`);
+            const activePin = document.querySelector(`.logo-marker[data-sucursal-id="${sucursal.id}"]`);
             if (activePin) {
                 activePin.classList.add('active');
             }
@@ -602,14 +463,14 @@
             const card = document.getElementById('floating-card');
             card.classList.remove('show');
             
-            // Volver al zoom original
-            map.flyTo([-34.6037, -58.3816], 12, {
+            // Volver al centro y zoom original
+            map.flyTo([-34.45, -58.76], 11, {
                 duration: 1.5,
                 easeLinearity: 0.25
             });
             
             // Desactivar todos los pins
-            document.querySelectorAll('.marker-pin').forEach(pin => {
+            document.querySelectorAll('.logo-marker').forEach(pin => {
                 pin.classList.remove('active');
             });
             
@@ -667,23 +528,28 @@
             const diaSemana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'][ahora.getDay()];
             const horaActual = ahora.getHours() * 60 + ahora.getMinutes();
             
-            const horario = sucursal.horarioDetalle[diaSemana];
-            
-            if (!horario.inicio || !horario.fin) {
+            const horario = sucursal.horarioDetalle ? sucursal.horarioDetalle[diaSemana] : null;
+
+            // horario puede ser un arreglo de intervalos o un objeto con inicio/fin
+            if (!horario) {
                 return '<span class="horario-badge cerrado"><i class="fas fa-circle"></i> CERRADO</span>';
             }
-            
-            const [horaInicio, minInicio] = horario.inicio.split(':').map(Number);
-            const [horaFin, minFin] = horario.fin.split(':').map(Number);
-            
-            const minutosInicio = horaInicio * 60 + minInicio;
-            const minutosFin = horaFin * 60 + minFin;
-            
-            if (horaActual >= minutosInicio && horaActual < minutosFin) {
-                return '<span class="horario-badge"><i class="fas fa-circle"></i> ABIERTO AHORA</span>';
-            } else {
-                return '<span class="horario-badge cerrado"><i class="fas fa-circle"></i> CERRADO</span>';
+
+            const intervals = Array.isArray(horario) ? horario : [horario];
+
+            for (const intervalo of intervals) {
+                if (!intervalo || !intervalo.inicio || !intervalo.fin) continue;
+                const [horaInicio, minInicio] = intervalo.inicio.split(':').map(Number);
+                const [horaFin, minFin] = intervalo.fin.split(':').map(Number);
+                const minutosInicio = horaInicio * 60 + minInicio;
+                const minutosFin = horaFin * 60 + minFin;
+
+                if (horaActual >= minutosInicio && horaActual < minutosFin) {
+                    return '<span class="horario-badge"><i class="fas fa-circle"></i> ABIERTO AHORA</span>';
+                }
             }
+
+            return '<span class="horario-badge cerrado"><i class="fas fa-circle"></i> CERRADO</span>';
         }
         
         // ============================================
@@ -692,6 +558,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Inicializar mapa
             initMap();
+
+            // Toggle sidebar button
+            const sucursalToggle = document.getElementById('sucursalToggle');
+            const sucursalesList = document.querySelector('.sucursales-list');
+            if (sucursalToggle && sucursalesList) {
+                sucursalToggle.addEventListener('click', () => {
+                    const expanded = sucursalesList.classList.toggle('collapsed');
+                    sucursalToggle.setAttribute('aria-expanded', (!expanded).toString());
+                    const icon = sucursalToggle.querySelector('i');
+                    if (icon) icon.classList.toggle('fa-chevron-left');
+                    if (icon) icon.classList.toggle('fa-chevron-right');
+                });
+            }
             
             // Click en items de lista
             document.querySelectorAll('.sucursal-item').forEach(item => {
@@ -724,6 +603,47 @@
             });
         }
     </script>
-    
+
+    <!-- Shared footer copied from site root (paths adjusted) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section logo-container">
+                <img src="../images/logo.png" class="logo" alt="Logo La Paz">
+                <span class="logo-text">Excelencia en cada corte desde 1994</span>
+            </div>
+
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="sobre-nosotros.html">Nosotros</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="sucursales.html">Sucursales</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>📍 Esquina principal — Zona</p>
+                <p>📞 +54 9 11 6161-4015</p>
+                <p>✉️ info@boutiquelapaz.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Seguínos</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/lapaz_carnepremium?igsh=MXM2M2xyMmZnc20wbw==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@lapaz_carnepremium?_r=1&_t=ZM-92ubbZmFJr1" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/5491161614015" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 La Paz. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
